@@ -1,0 +1,14 @@
+# Name for zabbix agent
+zabbix_agent_name: "{{ inventory_hostname }}"
+
+# List of groups for zabbix agent
+zabbix_agent_groups:
+  - Linux servers
+
+# List of templates for zabbix agent
+zabbix_agent_templates:
+  - Linux by Zabbix agent
+
+# Dict of tags for zabbix agent
+zabbix_agent_tags:
+  - { tag: "Worker", value: "xray-worker" }

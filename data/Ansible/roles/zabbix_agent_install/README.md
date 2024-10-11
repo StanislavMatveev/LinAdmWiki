@@ -12,9 +12,32 @@
 
 *Переменные которые необходимо указать в файлах group_vars:*
 
-- `zabbix_servers` - переменная с автоматической генерацией списка хостов zabbix сервера. Имя группы "zabbix_servers" необходимо заменить на свое.
+- `zabbix_servers` - общедоступная переменная содержащая список хостов zabbix сервера. Имя группы "zabbix_servers" необходимо заменить на свое.
 ```
-zabbix_servers: "{{ groups['zabbix_servers'] | map('extract', hostvars, 'ansible_host') }}"
+zabbix_servers: "{{ groups['zabbix_servers'] }}"
+```
+
+- `zabbix_agent_name` - переменная zabbix агента, содержащая имя хоста для указания в конфигах. По умолчанию забирает имя текущего хоста. Для указания индивидуального имени каждому хосту вручную, необходимо перенести в host_vars.
+```
+zabbix_agent_name: "{{ inventory_hostname }}"
+```
+
+- `zabbix_agent_groups` - переменная zabbix агента, с указанием групп, в которые необходимо добавить агент, после добавления в админ панель сервера.
+```
+zabbix_agent_groups:
+  - Linux servers
+```
+
+- `zabbix_agent_templates` - переменная zabbix агента, с указание шаблонов, которые необходимо присвоить агенту, после добавления в админ панель сервера.
+```
+zabbix_agent_templates:
+  - Linux by Zabbix agent
+```
+
+- `zabbix_agent_tags` - переменная zabbix агента, с указание тегов, которые необходимо присвоить агенту, после добавления в админ панель сервера.
+```
+zabbix_agent_tags:
+  - { tag: "Worker", value: "xray-worker" }
 ```
 
 *Переменные которые необходимо указать в файлах host_vars:*
@@ -24,14 +47,19 @@ zabbix_servers: "{{ groups['zabbix_servers'] | map('extract', hostvars, 'ansible
 zabbix_psk_identity: "PSK 001"
 ```
 
-- `ansible_user` - переменная zabbix сервера, содержащая имя пользователя zabbiz.
+- `ansible_user` - переменная zabbix сервера, содержащая имя пользователя zabbiz для авторизации (опционально, или вход по токену).
 ```
 ansible_user: Admin
 ```
 
-- `ansible_httpapi_pass` - переменная zabbix сервера, содержащая пароль пользователя zabbix.
+- `ansible_httpapi_pass` - переменная zabbix сервера, содержащая пароль пользователя zabbix для авторизации (опционально, или вход по токену).
 ```
 ansible_httpapi_pass: test
+```
+
+- `ansible_zabbix_auth_key` - переменная zabbix сервера, содержащая API токен для авторизации (опционально, или вход по логину и паролю).
+```
+ansible_zabbix_auth_key: some_key
 ```
 
 - Переменые zabbix сервера необходимые для базового подключения к админ панели для добавления агентов.

@@ -89,15 +89,16 @@
 
 - name: Adding zabbix-agent to zabbix-server
   zabbix_host:
-    host_name: "Server {{ zabbix_agent_address }}"
-    host_groups:
-      - Linux servers
+    host_name: "{{ zabbix_agent_name }}"
+    link_templates: "{{ zabbix_agent_templates }}"
+    host_groups: "{{ zabbix_agent_groups }}"
     interfaces:
       - type: 1
         main: 1
         useip: 1
         ip: "{{ zabbix_agent_address }}"
         port: "10050"
+    tags: "{{ zabbix_agent_tags }}"
     inventory_mode: "automatic"
     tls_accept: 2
     tls_connect: 2
@@ -105,3 +106,4 @@
     tls_psk: "{{ random_string_for_psk.stdout }}"
   delegate_to: "{{ item }}"
   loop: "{{ zabbix_servers }}"
+

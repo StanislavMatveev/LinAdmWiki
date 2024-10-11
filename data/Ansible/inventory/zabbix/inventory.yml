@@ -1,11 +1,11 @@
 zabbix_servers:
   hosts:
     zabbix_server_1:
-      ansible_host: 10.0.3.100
+      ansible_host: 192.168.1.116
 
 zabbix_agents:
   hosts:
     zabbix_agent_1:
-      ansible_host: 10.0.3.101
+      ansible_host: 10.0.3.100
     zabbix_agent_2:
-      ansible_host: 10.0.3.102
+      ansible_host: 10.0.3.101

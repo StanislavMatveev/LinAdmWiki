@@ -1,9 +1,9 @@
 PidFile=/var/run/zabbix/zabbix_agent2.pid
 LogFile=/var/log/zabbix/zabbix_agent2.log
 LogFileSize=200
-Server={{ zabbix_servers | join(',') }}
-ServerActive={{ zabbix_servers | join(';') }}
-Hostname={{ inventory_hostname }}
+Server={{ zabbix_servers | map('extract', hostvars, 'ansible_host') | join(',') }}
+ServerActive={{ zabbix_servers | map('extract', hostvars, 'ansible_host') | join(';') }}
+Hostname={{ zabbix_agent_name }}
 TLSConnect=psk
 TLSAccept=psk
 TLSPSKFile=/etc/zabbix/psk
