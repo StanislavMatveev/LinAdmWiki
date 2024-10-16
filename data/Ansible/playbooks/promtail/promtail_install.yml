@@ -1,0 +1,19 @@
+- hosts: promtail_nodes
+
+  tasks:
+    - name: Configing loki server for xray
+      iptables:
+        action: insert
+        chain: INPUT
+        protocol: tcp
+        destination_port: "{{ loki_port }}"
+        source: "{{ ansible_host }}"
+        jump: ACCEPT
+      become: yes
+      delegate_to: "{{ loki_server }}"
+      tags: xray_config
+
+    - name: Starting install
+      import_role:
+        name: promtail_install
+

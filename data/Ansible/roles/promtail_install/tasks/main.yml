@@ -1,0 +1,82 @@
+---
+### tasks file for promtail_install
+
+# Delete old version if exists
+
+- name: Stoping promtail service if exists
+  systemd_service:
+    name: promtail
+    state: stopped
+  ignore_errors: yes
+
+- name: Removing promtail package if exists
+  apt:
+    name: promtail
+    state: absent
+
+# Install new version
+
+- name: Creating group for new service
+  group:
+    name: "{{ group }}"
+    state: present
+
+- name: Creating user for new service
+  user:
+    name: "{{ user }}"
+    group: "{{ group }}"
+
+- name: Copying promtail bin file
+  copy:
+    src: promtail
+    dest: /usr/bin/promtail
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: '0755'
+
+- name: Creating directory for promtail config
+  file:
+    path: /etc/promtail
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: '0755'
+
+- name: Choosing a template depending on tls options
+  set_fact:
+    config_template: "{{ 'config_with_tls.yml.j2' if tls_ciph == true else 'config_without_tls.yml.j2' }}"
+
+- name: Copying promtail config
+  template:
+    src: "{{ config_template }}"
+    dest: /etc/promtail/config.yml
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: '0644'
+
+- name: Copying promtail.service file
+  template:
+    src: promtail.service.j2
+    dest: /etc/systemd/system/promtail.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copying CA certificate if use tls
+  copy:
+    src: ca.crt
+    dest: /etc/ssl/certs/ca.crt
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: '0640'
+  when: tls_ciph == true
+
+# Start promtail
+
+- name: Starting promtail service and reloading daemon if config exists before it
+  systemd_service:
+    name: promtail
+    state: started
+    enabled: true
+    daemon_reload: true
+

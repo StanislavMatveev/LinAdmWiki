@@ -1,0 +1,13 @@
+---
+### defaults variables for promtail_install
+
+# Variable for tls option
+tls_ciph: false
+
+# Variables for loki connect
+loki_server: localhost
+loki_port: 3100
+
+# Variables for setting access
+user: promtail
+group: promtail
