@@ -6,11 +6,11 @@
         action: insert
         chain: INPUT
         protocol: tcp
-        destination_port: "{{ loki_port }}"
+        destination_port: 3100
         source: "{{ ansible_host }}"
         jump: ACCEPT
       become: yes
-      delegate_to: "{{ loki_server }}"
+      delegate_to: 10.0.3.100
       tags: xray_config
 
     - name: Starting install
