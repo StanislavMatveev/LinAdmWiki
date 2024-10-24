@@ -1,7 +1,7 @@
 - hosts: promtail_nodes
 
   tasks:
-    - name: Configing loki server for xray
+    - name: Configing iptables in loki server for xray
       iptables:
         action: insert
         chain: INPUT
