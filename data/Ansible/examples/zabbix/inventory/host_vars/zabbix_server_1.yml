@@ -5,7 +5,7 @@
 #ansible_httpapi_pass: testPASS
 
 # API key for zabbix server
-ansible_zabbix_auth_key: 0eb320cba0c5aae25ded30b1c1fe2c0d4169c2ca3b23d182860d6966a9aadc19
+ansible_zabbix_auth_key: 
 
 # Defaults setting zabbix server connections
 ansible_network_os: community.zabbix.zabbix
