@@ -13,7 +13,7 @@
 
 > - [[linux_diagnistics|Диагностика железа на Linux системах]]
 > - [[cgroups_namespaces|Контрольные группы и пространство имен]]
-> - [[linux_network|Настройка и работа с сетью в Linux]]
+> - [[linux_network|Сеть в Linux]]
 > - [[linux_corosync_pacemaker|Отказоустойчивый кластер при помощи Corosync + Pacemaker]]
 > - [[linux_build_packages|Сборка пакетов из исходного кода]]
 > - [[linux_directory_structure|Структура директорий в Linux системах]]
