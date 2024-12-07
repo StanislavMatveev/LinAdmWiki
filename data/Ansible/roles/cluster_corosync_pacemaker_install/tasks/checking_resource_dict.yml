@@ -1,0 +1,12 @@
+---
+### tasks file for checking_resource_dict
+
+- name: Getting count IPsrcaddr resource
+  set_fact:
+    count_ipsrcaddr: "{{ resource_dict | dict2items | selectattr('value.type', 'equalto', 'IPsrcaddr') | list | length }}"
+
+- name: Checking count IPsrcaddr resource (not more than 1)
+  fail:
+    msg: "Error: quantity IPsrcaddr resource more that 1"
+  when: count_ipsrcaddr | int > 1
+

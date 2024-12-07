@@ -7,10 +7,20 @@ cluster_name: test_cluster
 # Password for "hacluster" user
 hacluster_pass: test
 
-# Dict of virtual ip addresses
-virtual_ip_dict:
-  1: 10.0.3.110
+# Dictionary with the needed resources
+resource_dict:
+  virtIP:
+    type: IPaddr2
+    ip_addr: 192.168.1.200
+    netmask: 24
+    group: default
+  virtIPdefaultROUTE:
+    type: IPsrcaddr
+    ip_addr: 192.168.1.200
+    netmask: 24
+    group: default
+  nginx_for_test:
+    type: systemd
+    service_name: nginx
+    group: default
 
-# List of systemd services
-services_list:
-  - nginx

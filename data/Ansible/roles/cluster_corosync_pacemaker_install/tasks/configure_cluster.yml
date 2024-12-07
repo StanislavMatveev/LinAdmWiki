@@ -15,43 +15,23 @@
   when: nodes_list | length <= 2
 
 - name: Creating virtual IP resources
-  command: "pcs resource create virtIP_{{ item.key }} ocf:heartbeat:IPaddr2 ip={{ item.value }} cidr_netmask=24 op monitor interval=30s" 
-  loop: "{{ virtual_ip_dict | dict2items }}"
+  command: "pcs resource create {{ item.key }} ocf:heartbeat:IPaddr2 ip={{ item.value.ip_addr }} cidr_netmask={{ item.value.netmask }} op monitor interval=30s" 
+  loop: "{{ resource_dict | dict2items }}"
+  when: item.value.type == "IPaddr2"
 
-- name: Creating a variable with virtual ip names to create a group (if virtual ip > 1)
-  set_fact:
-    ip_names: "{{ ip_names | default([]) + ['virtIP_' + (item.key) | string] }}"
-  loop: "{{ virtual_ip_dict | dict2items }}"
-  when: virtual_ip_dict | length > 1
-
-- name: Getting the network device name for route
-  shell:
-    cmd: ip route | grep default | grep -o 'dev\s\w*' | grep -o '\w*$'
-  register: device_name
-
-- name: Getting the network gateway for route
-  shell:
-    cmd: ip route | grep default | grep -o 'via\s\S*' | grep -o '\S*$'
-  register: gateway
-
-- name: Creating route resource 1
-  command: "pcs resource create route_1_for_virtIP_1 ocf:heartbeat:Route destination=0.0.0.0/0 device={{ device_name.stdout }} gateway={{ gateway.stdout }} source={{ virtual_ip_dict.1 }}"
-
-- name: Creating route resource 2
-  command: "pcs resource create route_2_for_virtIP_1 ocf:heartbeat:Route destination={{ gateway.stdout.split('.')[:3] | join('.') }}.0/24 device={{ device_name.stdout }} source={{ virtual_ip_dict.1 }}"
-
-- name: Creating a constaraint so that route 1 are started after virtual ip
-  command: "pcs constraint order virtIP_1 then route_1_for_virtIP_1"
-
-- name: Creating a constaraint so that route 2 are started after virtual ip
-  command: "pcs constraint order virtIP_1 then route_2_for_virtIP_1"
+- name: Creating virtual IP default route resources
+  command: "pcs resource create {{ item.key }} ocf:heartbeat:IPsrcaddr ipaddress={{ item.value.ip_addr }} cidr_netmask={{ item.value.netmask }} op monitor interval=30s"
+  loop: "{{ resource_dict | dict2items }}"
+  when: item.value.type == "IPsrcaddr"
 
 - name: Creating resources for systemd services
-  command: "pcs resource create {{ item }} systemd:{{ item }}"
-  loop: "{{ services_list }}"
+  command: "pcs resource create {{ item.key }} systemd:{{ item.value.service_name }}"
+  loop: "{{ resource_dict | dict2items }}"
+  when: item.value.type == "systemd"
 
 - name: Creating a group for resources
-  command: "pcs resource group add default_group {{ ip_names | default(['virtIP_1']) | join(' ') }} route_1_for_virtIP_1 route_2_for_virtIP_1 {{ services_list | join(' ') }}"
+  command: "pcs resource group add {{ item.value.group }} {{ item.key }}"
+  loop: "{{ resource_dict | dict2items }}"
 
 - name: Restrict the last node from resource migration (if nodes > 2)
   command: "pcs constraint location regexp%.* avoids {{ nodes_list[-1] }}"

@@ -3,6 +3,9 @@
 
 # Preparing
 
+- name: Checking resource dictionary
+  import_tasks: checking_resource_dict.yml
+
 - name: Adding hosts in /etc/hosts
   lineinfile:
     path: /etc/hosts
@@ -10,12 +13,34 @@
     line: "{{ hostvars[item]['ansible_host'] }} {{ item }}"
   loop: "{{ nodes_list }}" 
 
-- name: Disabling systemd services for use it in resources
+- name: Checking cloud-init file exists
+  stat:
+    path: /etc/cloud/templates/hosts.debian.tmpl
+  register: cloud_init
+
+- name: Adding hosts in /etc/cloud/templates/hosts.debian.tmpl
+  lineinfile:
+    path: /etc/cloud/templates/hosts.debian.tmpl
+    insertafter: "EOF"
+    line: "{{ hostvars[item]['ansible_host'] }} {{ item }}"
+  loop: "{{ nodes_list }}" 
+  when: cloud_init.stat.exists
+
+- name: Disabling autorun systemd services for use it in resources
   systemd_service:
-    name: "{{ item }}"
+    name: "{{ item.value.service_name }}"
     state: stopped
     enabled: false
-  loop: "{{ services_list }}"
+  loop: "{{ resource_dict | dict2items }}"
+  when: item.value.type == "systemd"
+  ignore_errors: yes
+
+- name: Removing old main packages if exists
+  apt:
+    name: "{{ packages_for_install }}"
+    state: absent
+    autoremove: yes
+    purge: true
   ignore_errors: yes
 
 # Installation
@@ -25,24 +50,20 @@
     name: "{{ packages_for_install }}"
     update_cache: yes
 
-- name: Make sure the service unit is enabled
-  systemd_service:
-    name: "{{ item }}"
-    enabled: true
-  loop:
-    - pacemaker
-    - corosync
-    - pcsd
-
 - name: Changing password for "hacluster" user
   user:
     name: hacluster
     password: "{{ hacluster_pass | password_hash('sha512') }}"
 
-- name: Make sure the service unit is running
+- name: Make sure the service unit is enabled and started
   systemd_service:
-    name: pcsd
+    name: "{{ item }}"
     state: started
+    enabled: true
+  loop:
+    - corosync
+    - pacemaker
+    - pcsd
 
 # Configuration
 
