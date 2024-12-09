@@ -65,6 +65,9 @@
     - pacemaker
     - pcsd
 
+- name: Destroing old cluster if exists
+  command: "pcs cluster destroy"
+
 # Configuration
 
 - name: Configuring cluster
