@@ -42,6 +42,7 @@
     autoremove: yes
     purge: true
   ignore_errors: yes
+  tags: packages_replace
 
 # Installation
 
@@ -49,6 +50,7 @@
   apt:
     name: "{{ packages_for_install }}"
     update_cache: yes
+  tags: packages_replace
 
 - name: Changing password for "hacluster" user
   user:
@@ -76,7 +78,11 @@
 
 # Installation end
 
-- name: Checking the configurations and if they are successful, restarting corosync service
+- name: Restarting corosync service
+  systemd_service:
+    name: corosync
+    state: restarted
+
+- name: Checking the configurations
   command: "pcs cluster verify --full"
-  notify: Restart corosync service
 

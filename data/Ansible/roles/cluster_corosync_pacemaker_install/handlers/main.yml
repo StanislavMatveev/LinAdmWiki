@@ -1,8 +1,0 @@
----
-### handlers file for cluster_corosync_pacemaker_install
-
-- name: Restart corosync service
-  systemd_service:
-    name: corosync
-    state: restarted
-
