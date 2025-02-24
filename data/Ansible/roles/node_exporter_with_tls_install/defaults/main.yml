@@ -1,0 +1,4 @@
+---
+# defaults file for node_exporter_with_tls_install
+
+node_exporter_port: 9100

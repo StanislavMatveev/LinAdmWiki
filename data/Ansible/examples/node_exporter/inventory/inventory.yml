@@ -1,0 +1,8 @@
+node_exporter_servers:
+  hosts:
+    node_1:
+      ansible_host: 10.0.3.110
+    node_2:
+      ansible_host: 10.0.3.111
+    node_3:
+      ansible_host: 10.0.3.112

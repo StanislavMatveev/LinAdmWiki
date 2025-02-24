@@ -1,0 +1,14 @@
+[Unit]
+Description=Prometheus exporter for machine metrics
+Documentation=https://github.com/prometheus/node_exporter
+
+[Service]
+Restart=on-failure
+User=prometheus
+ExecStart=/usr/bin/node_exporter --web.listen-address=:{{ node_exporter_port }} --web.config.file="/etc/node_exporter/web-config.yml"
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target

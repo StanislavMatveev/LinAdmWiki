@@ -1,0 +1,32 @@
+---
+### tasks file for config_prometheus
+
+- name: Copying CA cert
+  copy:
+    src: ca.crt
+    dest: /etc/prometheus/ca.crt
+    owner: prometheus
+    group: prometheus
+    mode: "0644"
+
+- name: Adding new data in prometheus config file
+  blockinfile:
+    path: /etc/prometheus/prometheus.yml
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR {{ ansible_host }}"
+    insertafter: "^scrape_configs:"
+    append_newline: true
+    block: |
+      # Config for {{ inventory_hostname }}
+        - job_name: {{ inventory_hostname }}
+          scrape_interval: 1s
+          static_configs:
+            - targets: ['{{ ansible_host }}:{{ node_exporter_port }}']
+          scheme: https
+          tls_config:
+            ca_file: '/etc/prometheus/ca.crt'
+
+- name: Restarting prometheus
+  systemd_service:
+    name: prometheus
+    state: restarted
+

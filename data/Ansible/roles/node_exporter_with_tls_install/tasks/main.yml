@@ -1,0 +1,84 @@
+---
+### tasks file for node_exporter_with_tls_install
+
+# Preparing
+
+- name: Removing old node_exporter if exists
+  apt:
+    name: prometheus-node-exporter
+    state: absent
+    autoremove: yes
+    purge: true
+  ignore_errors: yes
+
+- name: Creating prometheus group
+  group:
+    name: prometheus
+    state: present
+
+- name: Creating prometheus user
+  user:
+    name: prometheus
+    create_home: false
+    shell: /usr/sbin/nologin
+    group: prometheus
+
+- name: Creating directory for node_exporter
+  file:
+    path: /etc/node_exporter
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: "0755"
+
+# Instalation
+
+- name: Copying node_exporter bin file
+  copy:
+    src: node_exporter
+    dest: /usr/bin/node_exporter
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copying web-config.yml and tls cert
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/node_exporter/{{ item }}"
+    owner: prometheus
+    group: prometheus
+    mode: "0644"
+  loop:
+    - web-config.yml 
+    - node_exporter.crt
+
+- name: Copying tls key
+  copy:
+    src: node_exporter.key
+    dest: /etc/node_exporter/node_exporter.key
+    owner: prometheus
+    group: prometheus
+    mode: "0600"
+
+- name: Copying systemd service file
+  template:
+    src: node-exporter.service.j2
+    dest: /etc/systemd/system/node-exporter.service
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Starting node_exporter service
+  systemd_service:
+    name: node-exporter
+    state: started
+    enabled: true
+    daemon_reload: true
+
+# Configuring prometheus
+
+- name: Configuring prometheus
+  import_tasks:
+    file: config_prometheus.yml
+  delegate_to: "{{ prometheus_server }}"
+
