@@ -1,4 +1,0 @@
-- name: remove package isc-dhcp-client and isc-dhcp-common
-  package:
-    name:  "{{ remove_packages }}"
-    state: absent

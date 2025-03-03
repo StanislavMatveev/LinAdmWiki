@@ -1,5 +1,0 @@
-# Default variables
-ansible_ssh_private_key_file: /root/.ssh/id_rsa
-
-# Variable containing zabbix servers
-zabbix_servers: "{{ groups['zabbix_servers'] }}"

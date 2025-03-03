@@ -1,9 +1,0 @@
-- name: copy key
-  template: 
-   src: md.key
-   dest: /root/md.key
-
-- name: add key for repo
-  apt_key:
-   file: /root/md.key
-   state: present

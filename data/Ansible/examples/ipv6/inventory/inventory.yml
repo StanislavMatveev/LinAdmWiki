@@ -1,4 +1,0 @@
-hosts_for_ipv6:
-  hosts:
-    host1:
-      ansible_host: 10.0.3.100

@@ -1,5 +1,0 @@
-- name: tune auditd
-  template:
-   src: audit.rules
-   dest: /etc/audit/rules.d/custom.rules
-  notify: restart auditd

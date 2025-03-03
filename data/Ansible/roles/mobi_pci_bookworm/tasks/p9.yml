@@ -1,9 +1,0 @@
-- name: configure ntp.conf
-  template: 
-   src: ntp.conf
-   dest: /etc/ntp.conf
-- name: disable ipv6 on ntpd
-  template:
-   src: ntp
-   dest: /etc/default/ntp
-  notify: restart ntp

@@ -1,5 +1,0 @@
-- name: set locales
-  lineinfile:
-   path: /etc/default/locale
-   line: LANG="en_US.UTF-8"
-   state: present

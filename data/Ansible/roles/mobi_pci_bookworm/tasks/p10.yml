@@ -1,9 +1,0 @@
-- name: enable apt proxy
-  template:
-   src: 01proxy
-   dest: /etc/apt/apt.conf.d/01proxy 
-
-- name: enable private repository
-  template:
-   src: deb.mobi-money.ru.list
-   dest: /etc/apt/sources.list.d/deb.mobi-money.ru.list

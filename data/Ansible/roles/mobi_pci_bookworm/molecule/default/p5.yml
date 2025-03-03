@@ -1,7 +1,0 @@
-- name: Set timeout for bash
-  blockinfile:
-   dest: /etc/profile
-   block: |
-     TMOUT=300
-     readonly TMOUT
-     export TMOUT

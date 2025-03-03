@@ -1,3 +1,0 @@
-- hosts: nginx_host
-  roles:
-    - apache_upstream_restart

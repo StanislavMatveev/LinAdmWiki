@@ -1,6 +1,0 @@
-promtail_nodes:
-  hosts:
-    node1:
-      ansible_host: 10.0.3.101
-    node2:
-      ansible_host: 10.0.3.102

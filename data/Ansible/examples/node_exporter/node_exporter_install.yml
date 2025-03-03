@@ -1,3 +1,0 @@
-- hosts: node_exporter_servers
-  roles:
-    - node_exporter_with_tls_install

@@ -1,9 +1,0 @@
----
-### Task file for rollback changes if something wrong
-
-- name: Restoring /etc/ssh/sshd_config file
-  command: "mv /etc/ssh/sshd_config.old /etc/ssh/sshd_config"
-
-- name: Ending work
-  fail:
-    msg: Setup did not complete successfully, check the config parameters.

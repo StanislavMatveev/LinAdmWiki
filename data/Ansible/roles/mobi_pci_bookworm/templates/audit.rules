@@ -1,2 +1,0 @@
--a exclude,always -F msgtype=CWD
--a exit,always -S all -F euid=0 -F perm=awx -k root-commands

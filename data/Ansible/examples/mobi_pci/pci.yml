@@ -1,9 +1,0 @@
----
-- hosts: 'pci_wh'
-  #user: prusakov
-  #become: yes
-  #become_method: sudo
-  #become_user: root
-
-  roles:
-    - mobi_pci_bookworm

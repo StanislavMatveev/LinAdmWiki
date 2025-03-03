@@ -1,7 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include mobi_pci_buster"
-      include_role:
-        name: "mobi_pci_buster"
