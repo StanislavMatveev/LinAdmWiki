@@ -1,0 +1,1218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../linux_corosync_pacemaker/">
+      
+      
+        <link rel="next" href="../linux_directory_structure/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Диагностика железа на Linux системах - База знаний LinAdm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="База знаний LinAdm" class="md-header__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            База знаний LinAdm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Диагностика железа на Linux системах
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="База знаний LinAdm" class="md-nav__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    База знаний LinAdm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная страница
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Консольные утилиты и приложения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../borgbackup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroups_namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Контрольные группы и пространство имен
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_build_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сборка пакетов из исходного кода
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#top" class="md-nav__link">
+    <span class="md-ellipsis">
+      Диагностика с помощью top
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Диагностика с помощью top">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Показатели CPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Диагностика с помощью atop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Диагностика с помощью atop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atop_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Дополнительные варианты запуска atop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Дополнительные утилиты для диагностики
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-average-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Average в Linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iops-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOPS в Linux
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_directory_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Структура директорий в Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LXC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_basic_diagnostic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Базовые нагрузочные тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты кластера Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_loki_promtail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тестирование работы Loki + Promtail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#top" class="md-nav__link">
+    <span class="md-ellipsis">
+      Диагностика с помощью top
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Диагностика с помощью top">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Показатели CPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Диагностика с помощью atop
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Диагностика с помощью atop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#atop_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Дополнительные варианты запуска atop
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Дополнительные утилиты для диагностики
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-average-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Average в Linux
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iops-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOPS в Linux
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux">Диагностика железа на Linux системах<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<p><em><a href="../linux/">&lt;- Назад</a></em></p>
+<p><em><a href="../">&lt;- На главную</a></em></p>
+<hr />
+<h2 id="top">Диагностика с помощью top<a class="headerlink" href="#top" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Общая информация<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><code>top</code> - утилита Linux которая используется для отображения <em>системной информации</em> о процессах, работающих в данный момент. Так же можно посмотреть загрузку процессора, памяти и других системных ресурсов.</p>
+<p><em>Некоторые важные команды:</em></p>
+<ul>
+<li><code>q</code> - выход;</li>
+<li><code>&lt;</code> или <code>&gt;</code> - выбирает параметр по которому будет осуществляться сортировка;</li>
+<li><code>P</code> - сортирует процессы по использованию процессора;</li>
+<li><code>M</code> - сортирует процессы по использованию памяти;</li>
+<li><code>u</code> - оставляет процессы только для определенного пользователя;</li>
+<li><code>k</code> - убивает выбранный процесс;</li>
+<li><code>A</code> - переход в "многооконный" режим;</li>
+<li><code>m</code> - изменяет тип отображения оперативной памяти (внешний вид);</li>
+<li><code>1</code> - изменяет тип отображения CPU каждый процессор отдельно или все вместе;</li>
+<li><code>t</code> - изменяет тип отображения CPU (внешний вид);</li>
+<li><code>a</code> - перемещение по окнам;</li>
+<li><code>z</code> - "окрашивает" интерфейс;</li>
+<li><code>Z</code> - включает режим настройки "окрашивания";</li>
+<li><code>x</code> - выделяет по какому параметру отсортированы процессы;</li>
+<li><code>W</code> - сохраняет настроенную конфигурацию в файл <code>~/.toprc</code> или <code>~/config/procpc/.toprc</code>;</li>
+<li><code>h</code> - выводит справку по командам.</li>
+</ul>
+<p><em>Сведения о процессах:</em></p>
+<ul>
+<li><code>PID</code> - идентификатор процесса;</li>
+<li><code>USER</code> - пользователь, запустивший процесс;</li>
+<li><code>PR</code> - приоритет процесса;</li>
+<li><code>NI</code> - измененный приоритет (присвоенный пользователем с помощью команды nice);</li>
+<li><code>VIRT</code> - объем используемой виртуальной памяти (здесь выводится тот объем памяти, который был запрошен процессом, даже если фактически используется меньше);</li>
+<li><code>RES</code> - объем используемой оперативной памяти (в данном случае, если процесс запросил 50Мб памяти, а использует 10Мб, будет выведено 10Мб);</li>
+<li><code>SHR</code> - объем памяти, разделяемой с другими процессами (т.е.  память, которая может быть использована другими процессами);</li>
+<li><code>S</code> - статус процесса;</li>
+<li><code>%CPU</code> - процент использования процессорного времени;</li>
+<li><code>%MEM</code> - процент использования оперативной памяти;</li>
+<li><code>TIME</code> - общее время работы процесса;</li>
+<li><code>COMMAND</code> - имя процесса (команда, которой был запущен процесс).</li>
+</ul>
+<h3 id="cpu">Показатели CPU<a class="headerlink" href="#cpu" title="Permanent link">&para;</a></h3>
+<p><strong>Справочная информация</strong></p>
+<p>У CPU могут быть следующие <em>основные</em> состояния:</p>
+<ul>
+<li><em>idle</em> (простой процессора), когда ничего не происходит;</li>
+<li>запуск процессов в <em>userspace</em> (пространство пользователя - программы и пр.);</li>
+<li>запуск процессов в <em>kernelspace</em> (пространство ядра - процессы, запуск которых инициирован ядром).</li>
+</ul>
+<blockquote>
+<p><em>Дополнительно</em> эти три состояния могут быть разделены по <em>приоритету</em>, так называемый <em>nice</em>. <em>По умолчанию</em>, все процессы запущенны с равным приоритетом 0. <em>Nice</em> принимает значения от -20 до 19.</p>
+</blockquote>
+<p><strong>Разбор показателей CPU top</strong></p>
+<div class="highlight"><pre><span></span><code>%Cpu(s):  0,3 us,  0,3 sy,  0,0 ni, 99,3 id,  0,0 wa,  0,0 hi,  0,0 si,  0,0 st
+</code></pre></div>
+<ul>
+<li><code>0,3 us</code> - информирует о том, что CPU тратит всего 0,3% своего времени на выполнение процессов в <em>userspace</em>. Это может быть любой процесс, которые <em>не принадлежит ядру</em> и выполняется в <em>пользовательском пространстве</em> (веб-сервер, БД, компилятор и т.д.). Обычно на нагруженном сервере <em>большую</em> часть занимает именно данный показатель.</li>
+<li><code>0,3 sy</code> - это количество времени (в процентах), которое процессор потратил на <em>запуск ядра</em>. Все процессы и системные ресурсы <em>обрабатываются</em> ядром. Когда процессу <em>пользовательского пространства</em> нужно что-то из системы (выделить память, выполнить операции ввода-вывода, создать дочерний процесс и т.д.), то в игру вступает ядро. Данный показатель <em>должен быть</em> как можно <em>меньше</em> при штатной работе сервера.</li>
+<li><code>0,0 ni</code> - данный показатель выводит данные процессов, которые <em>использовали процессорное время</em> и приоритет которых был <em>изменен</em> с помощью <em>nice</em>. В данном случае все по нулям, т.к. никаким процессам доп.приоритет не выдавался.</li>
+<li><code>99,3 id</code> - <em>idle time</em>, о котором говорилось выше, 99,3% времени CPU простаивал.</li>
+<li><code>0,0 wa</code> - статистика по операциям <em>ввода-вывода</em>, такие как чтение или запись на диск. </li>
+</ul>
+<blockquote>
+<p>Есть моменты, когда <em>CPU</em> запускает такие операции и ему приходится <em>ждать</em> их завершения, т.к. <em>скорость</em> работы дисковых накопителей намного <em>меньше</em>, чем скорость работы CPU.</p>
+</blockquote>
+<ul>
+<li><code>0,0 hi &amp; 0,0 si</code> - эти две статистики показывают, сколько времени (в процентах) процессор потратил на <em>обслуживание прерываний</em>. <code>hi</code> - <em>аппаратные</em>, отправляемые к CPU с различных <em>периферийных</em> устройств, например, с дисков или сетевых интерфейсов. <code>si</code> - <em>программные</em>, которые происходят на уровне ядра.</li>
+<li><code>0,0 st</code> - относится только к <em>виртуальным машинам</em> (ВМ). Когда Linux запущен как ВМ на гипервизоре, <code>st</code> показывает сколько времени его vCPU провел в <em>ожидании обслуживания</em> гипервизором другого vCPU, работающего на другой ВМ. Поскольку обычно эти <em>виртуальные процессоры</em> совместно используют один и тот же <em>физический процессор</em> (или процессоры), то будут моменты, когда виртуальная машина хотела выполнить какое-либо действие, но гипервизор вместо этого назначал ресурсы CPU другой виртуальной машине.</li>
+</ul>
+<hr />
+<h2 id="atop">Диагностика с помощью atop<a class="headerlink" href="#atop" title="Permanent link">&para;</a></h2>
+<p><code>atop</code> - это утилита для <em>мониторинга</em> системных ресурсов в Linux. Более <em>продвинутый</em> аналог <code>top</code>, основным <em>отличием</em> является функция <em>ведения логов</em>, благодаря чему, есть возможность отслеживать работу процессов за прошедшие дни.
+Утилита способна отображать <em>конфиденциальную</em> информацию о системе, которую можно получить с помощью <code>sudo</code>.</p>
+<p>При запуске, экран разделен на две панели, сверху - накопленная <em>статистика</em> использования ресурсов системы, снизу - <em>информация</em> для каждого процесса.</p>
+<p><strong>Накопленная статистика использования ресурсов системы</strong>
+<img alt="atop_panel.png" src="../image_for_articles/atop_panel.png" /></p>
+<ul>
+<li><code>PRC</code> - процессы</li>
+<li><code>CPU</code> - нагрузка CPU</li>
+<li><code>cpu</code> - нагрузка CPU для каждого ядра</li>
+<li><code>CPL</code> - нагрузка процессора</li>
+<li><code>MEM</code> - использование оперативной памяти</li>
+<li><code>SWP</code> - подкачка оперативной памяти</li>
+<li><code>DSK</code> - использование диска</li>
+<li><code>NET</code> - сетевая статистика</li>
+</ul>
+<p><strong>Общий вывод команды:</strong></p>
+<ul>
+<li><code>PID</code> - идентификатор процесса</li>
+<li><code>SYSCPU</code> - количество процессорного времени, затраченного при обработке системных задач</li>
+<li><code>USRCPU</code> - количество процессорного времени, затраченного в режиме пользователя</li>
+<li><code>VGROW</code> - объем виртуальной памяти, занятой процессом с момента последнего обновления значений</li>
+<li><code>RGROW</code> - объем физической памяти, занятой процессом с момента последнего обновления значений</li>
+<li><code>RDDSK</code> - размер переданных данных при чтении с диска</li>
+<li><code>WRDSK</code> - размер переданных данных при записи на диск</li>
+<li><code>RUID</code> - реальный идентификатор пользователя, от имени которого выполняется процесс</li>
+<li><code>EUID</code> - эффективный идентификатор пользователя, под которым выполняется процесс</li>
+<li><code>ST</code> - текущий статус процесса</li>
+<li><code>EXC</code> - код завершения после окончания процесса</li>
+<li><code>THR</code> - количество потоков внутри процесса</li>
+<li><code>S</code> - текущий статус основного потока процесса</li>
+<li><code>CPU</code> - процент использования CPU всеми процессами</li>
+<li><code>CMD</code> - название процесса</li>
+</ul>
+<p><strong>Вывод использования памяти:</strong></p>
+<ul>
+<li><code>PID</code> — идентификатор процесса</li>
+<li><code>TID</code> — идентификатор потока</li>
+<li><code>MINFLT</code> — количество мелких ошибок страниц, которые исправлены путем доступа к данным из свободных страниц</li>
+<li><code>MAJFLT</code> — количество крупных ошибок страниц, которые были устранены путем извлечения данных с диска</li>
+<li><code>VSTEXT</code> — объем виртуальной памяти, занимаемой текстом процесса</li>
+<li><code>VSLIBS</code> — объем виртуальной памяти, занимаемой общими библиотеками процесса</li>
+<li><code>VDATA</code> — объем виртуальной памяти, занимаемой приватными данными процесса</li>
+<li><code>VSTACK</code> — объем виртуальной памяти, занимаемой приватным стеком процесса</li>
+<li><code>VSIZE</code> — общий объем виртуальной памяти процесса</li>
+<li><code>RSIZE</code> — общий объем резидентной памяти, занимаемой процессом</li>
+<li><code>MEM</code> — процент использования RAM процессом</li>
+</ul>
+<h3 id="atop_1">Дополнительные варианты запуска atop<a class="headerlink" href="#atop_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Записывать информацию в файл каждые 5 секунд</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-w<span class="w"> </span>atop_log<span class="w"> </span><span class="m">5</span>
+</code></pre></div>
+<ul>
+<li>Прочитать информацию из файла</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-r<span class="w"> </span>atop_log
+</code></pre></div>
+<blockquote>
+<p>Перемещение между снимками осуществляется с помощью следующих клавиш: <code>t</code> - следующий снимок; <code>T</code> - предыдущий снимок.</p>
+</blockquote>
+<ul>
+<li>После записи так же можно использовать <code>atopsar</code>, для анализа полученных логов</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atopsar<span class="w"> </span>-r<span class="w"> </span>atop_log
+</code></pre></div>
+<ul>
+<li>Вывод информации по логу за сегодня</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-r
+</code></pre></div>
+<ul>
+<li>Посмотреть информацию по логу за конкретный день</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-r<span class="w"> </span>/var/log/atop/atop_20241231
+</code></pre></div>
+<blockquote>
+<p>Чтобы регулярно велись логи, необходимо добавить процесс в автозагрузку с помощью <code>systemctl</code>.</p>
+</blockquote>
+<ul>
+<li>Вывод базового набора информации (по умолчанию)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-g
+</code></pre></div>
+<ul>
+<li>Вывод информации по использованию памяти</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-m
+</code></pre></div>
+<ul>
+<li>Вывод информации по дискам</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-d
+</code></pre></div>
+<ul>
+<li>Вывод информации по сети</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-n
+</code></pre></div>
+<ul>
+<li>Поиск запущенных в фоновом режиме команд</li>
+</ul>
+<div class="highlight"><pre><span></span><code>atop<span class="w"> </span>-c
+</code></pre></div>
+<blockquote>
+<p>Все эти режимы можно включить из основного режима, просто нажав соответствующую клавишу.</p>
+</blockquote>
+<hr />
+<h2 id="_2">Дополнительные утилиты для диагностики<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><code>fio</code> (Flexible I/O Tester) - это утилита для тестирования <em>производительности</em> ввода/вывода (I/O) на Linux. Она позволяет создавать различные тестовые <em>сценарии</em> для оценки производительности дисков, файловых систем и других устройств хранения данных.</p>
+<div class="highlight"><pre><span></span><code>fio<span class="w"> </span>--name<span class="o">=</span>lineread<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--rw<span class="o">=</span><span class="nb">read</span><span class="w"> </span>--direct<span class="o">=</span><span class="m">1</span><span class="w"> </span>--size<span class="o">=</span>1G<span class="w"> </span>--directory<span class="o">=</span>/tmp/fio/
+</code></pre></div>
+<p><em>где:</em></p>
+<ul>
+<li><code>name</code> - название теста</li>
+<li><code>ioengine</code> - библиотека для тестирования (наилучшая <em>libaio</em>)</li>
+<li><code>rw</code> - тип операции ввода-вывода (read - линейное чтение, write - линейная запись, randread - случайное чтение, randwrite - случайная запись, readwrite)</li>
+<li><code>direct</code> - не использовать буферизацию</li>
+<li><code>size</code> - размер файла</li>
+<li><code>directory</code> - папка для тестов (необходимо сначала создать)</li>
+</ul>
+<p><code>stress</code> - это утилита для Linux, которая используется для <em>создания нагрузки</em> на систему с целью тестирования ее <em>стабильности</em> и <em>производительности</em>. Она позволяет <em>имитировать</em> высокую загрузку CPU, памяти, дисков и сети, чтобы проверить, как система будет вести себя в условиях <em>экстремальной</em> нагрузки.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Тестиуем CPU (добавляем процессы)</span>
+stress<span class="w"> </span>-c<span class="w"> </span><span class="m">13</span>
+<span class="c1"># Тестируем ввод/вывод</span>
+stress<span class="w"> </span>-i<span class="w"> </span><span class="m">4</span>
+<span class="c1"># Тестируем оперативную память</span>
+stress<span class="w"> </span>-m<span class="w"> </span><span class="m">10</span>
+<span class="c1"># Тестируем диск</span>
+stress<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>--hdd-bytes<span class="w"> </span>3G
+<span class="c1"># Комбинируем разные опции и ставим таймаут</span>
+stress<span class="w"> </span>-c<span class="w"> </span><span class="m">20</span><span class="w"> </span>-d<span class="w"> </span><span class="m">1</span><span class="w"> </span>-t<span class="w"> </span><span class="m">60</span>
+</code></pre></div>
+<p><code>iperf3</code> - это утилита для тестирования <em>пропускной способности сети</em> в Linux. Она позволяет измерять <em>скорость передачи</em> данных между двумя узлами в сети, что полезно для оценки <em>производительности</em> сети, выявления узких мест и <em>оптимизации</em> настроек сетевого оборудования.</p>
+<hr />
+<h2 id="load-average-linux">Load Average в Linux<a class="headerlink" href="#load-average-linux" title="Permanent link">&para;</a></h2>
+<p><em>В Linux средние нагрузки (Load Average)</em> - это "средние значения нагрузки на <em>систему</em>". Они измеряют количество <em>выполняемых</em> потоков и <em>ожидающих</em> своей очереди (процессор, диск, непрерываемые блокировки). Иными словами, эта метрика отражает количество потоков, которые <em>не простаивают полностью</em>. <em>Преимущество</em>: учитывается потребность в разных ресурсах.
+<em>В других ОС средние нагрузки</em> - это "средние значения нагрузки на <em>процессор</em>". Они измеряют количество потоков, <em>выполняемых</em> и <em>готовых к выполнению</em> в процессоре. <em>Преимущество</em>: проще в понимании и обосновании (только для процессоров).</p>
+<p>Это мера нагрузки, которая <em>может превышать</em> обрабатываемую системой в данный момент. Большинство инструментов показывает <em>три</em> средних значения: для 1, 5 и 15 минут. <em>Load average</em> измеряется в <em>безразмерных</em> единицах. Например, значение 1.00 означает полную загрузку <em>одного процессора</em>, а значение 2.00 - полную загрузку <em>двух процессоров</em>.</p>
+<div class="highlight"><pre><span></span><code>load<span class="w"> </span>avearage:<span class="w"> </span><span class="m">25</span>.25,<span class="w"> </span><span class="m">23</span>.40,<span class="w"> </span><span class="m">23</span>.46
+</code></pre></div>
+<p><em>Некоторые триггеры:</em></p>
+<ul>
+<li>если значения <em>равны</em> 0.0, то система в состоянии простоя</li>
+<li>если среднее значение для 1 минуты <em>выше</em>, чем для 5 или 15, то нагрузка <em>растет</em></li>
+<li>если среднее значение для 1 минуты <em>ниже</em>, чем для 5 или 15, то нагрузка <em>снижается</em></li>
+<li>если значения нагрузки выше, чем количество процессоров, то могут быть проблемы с производительностью (в зависимости от ситуации)</li>
+</ul>
+<hr />
+<h2 id="iops-linux">IOPS в Linux<a class="headerlink" href="#iops-linux" title="Permanent link">&para;</a></h2>
+<p><em>IOPS (Input/Output Operations Per Second)</em> – один из ключевых параметров при измерении <em>производительности</em> систем хранения данных, жестких дисков, твердотельных дисков и сетевых хранилищ данных. По сути, <em>IOPS</em> это <em>количество блоков</em>, которое успевает считаться или записаться на носитель.</p>
+<p>Основными измеряемыми величинами являются операции <em>линейного</em> (последовательного) и <em>произвольного</em> (случайного) доступа.</p>
+<p>Под <em>линейными</em> операциям чтения/записи, при которых части файлов считываются последовательно, одна за другой, подразумевается передача <em>больших</em> файлов (более 128 К). При <em>произвольных</em> операциях данные читаются случайно из разных областей носителя, обычно они ассоциируются с размером блока 4 Кбайт.</p>
+<p><strong>Приблизительные значения IOPS для жестких дисков</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Устройство</th>
+<th style="text-align: center;">Тип</th>
+<th style="text-align: center;">IOPS</th>
+<th style="text-align: center;">Интерфейс</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">7,200 об/мин SATA-диски</td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">~75-100 IOPS</td>
+<td style="text-align: center;">SATA 3 Гбит/с</td>
+</tr>
+<tr>
+<td style="text-align: center;">10,000 об/мин SATA-диски</td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">~125-150 IOPS</td>
+<td style="text-align: center;">SATA 3 Гбит/с</td>
+</tr>
+<tr>
+<td style="text-align: center;">10,000 об/мин SAS-диски</td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">~140 IOPS</td>
+<td style="text-align: center;">SAS</td>
+</tr>
+<tr>
+<td style="text-align: center;">15,000 об/мин SAS-диски</td>
+<td style="text-align: center;">HDD</td>
+<td style="text-align: center;">~175-210 IOPS</td>
+<td style="text-align: center;">SAS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Приблизительные значения IOPS для SSD</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Устройство</th>
+<th style="text-align: center;">Тип</th>
+<th style="text-align: center;">IOPS</th>
+<th style="text-align: center;">Интерфейс</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Intel X25-M G2 MLC</td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">~8 600 IOPS</td>
+<td style="text-align: center;">SATA 3 Гбит/с</td>
+</tr>
+<tr>
+<td style="text-align: center;">OCZ Vertex 3</td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">~60 000 IOPS (Произвольная запись 4K)</td>
+<td style="text-align: center;">SATA 6 Гбит/с</td>
+</tr>
+<tr>
+<td style="text-align: center;">OCZ RevoDrive 3 X2</td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">~200 000 IOPS (Произвольная запись 4K)</td>
+<td style="text-align: center;">PCIe</td>
+</tr>
+<tr>
+<td style="text-align: center;">OCZ Z-Drive R4 CloudServ</td>
+<td style="text-align: center;">SSD</td>
+<td style="text-align: center;">~1 400 000 IOPS</td>
+<td style="text-align: center;">PCIe</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1218 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../apps/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Ansible - База знаний LinAdm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ansible" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="База знаний LinAdm" class="md-header__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            База знаний LinAdm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ansible
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="База знаний LinAdm" class="md-nav__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    База знаний LinAdm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная страница
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ansible_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основы ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inventory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Простые команды в Ansible. Module
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playbooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-ansible-galaxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles &amp; Ansible Galaxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles &amp; Ansible Galaxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Использование ролей
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#molecule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Molecule
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Консольные утилиты и приложения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../borgbackup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroups_namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Контрольные группы и пространство имен
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_build_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сборка пакетов из исходного кода
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_diagnistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_directory_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Структура директорий в Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LXC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_basic_diagnostic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Базовые нагрузочные тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты кластера Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_loki_promtail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тестирование работы Loki + Promtail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ansible_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основы ansible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inventory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Простые команды в Ansible. Module
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#playbooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Playbooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-ansible-galaxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roles &amp; Ansible Galaxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Roles &amp; Ansible Galaxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Использование ролей
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Collections
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#molecule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Molecule
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ansible">Ansible<a class="headerlink" href="#ansible" title="Permanent link">&para;</a></h1>
+<p><em><a href="../apps/">&lt;- Назад</a></em></p>
+<p><em><a href="../">&lt;- На главную</a></em></p>
+<hr />
+<h2 id="ansible_1">Основы ansible<a class="headerlink" href="#ansible_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.ansible.com/ansible/latest/index.html">Документация.</a></p>
+<p><code>ansible</code> - система <em>управления конфигурациями</em>, написанная на языке программирования Python, с использованием декларативного языка разметки для описания конфигураций. Применяется для <em>автоматизации</em> настройки и развертывания программного обеспечения.</p>
+<blockquote>
+<p>Главное отличие Ansible от аналогов - <em>не нужна</em> установка <em>агента</em> или <em>клиента</em> на целевые системы.</p>
+</blockquote>
+<p>Большинство сред Ansible состоят из трех <em>основных компонентов</em>:</p>
+<ul>
+<li><em>Control node</em> (узел управления) - система, на которой установлен Ansible.</li>
+<li><em>Inventory</em> (инвентаризация) - логически организованный, список управляемых узлов.</li>
+<li><em>Managed node</em> (управляемый узел) - удаленная система или хост, которым управляет Ansible.</li>
+</ul>
+<p><img alt="ansible_work_scheme.svg" src="../image_for_articles/ansible_work_scheme.svg" /></p>
+<p><em>Установка</em> описана на <a href="https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html">сайте</a>.</p>
+<p>Чтобы просмотреть <em>информацию</em> об Ansible, в том числе и о конфигах, можно использовать следующую команду: <code>ansible --version</code></p>
+<p>Основная <em>настройка</em> Ansible происходит через файл конфигурации <code>ansible.cfg</code>. В нем можно указать различные параметры, такие как путь к <code>inventory</code>, настройки ssh и многое другое.
+Ansible <em>ищет</em> файл конфигурации в следующем порядке:</p>
+<ul>
+<li><code>ANSIBLE_CONFIG</code> - переменная окружения (если установлена);</li>
+<li><code>ansible.cfg</code> - в текущей директории;</li>
+<li><code>~/.ansible.cfg</code> - в домашней директории;</li>
+<li><code>/etc/ansible/ansible.cfg</code> - основная директория.</li>
+</ul>
+<p><em>Пример:</em></p>
+<div class="highlight"><pre><span></span><code><span class="k">[defaults]</span>
+<span class="na">inventory</span><span class="o">=</span><span class="s">./inventory.yml</span>
+</code></pre></div>
+<blockquote>
+<p>Чтобы <em>сгенерировать</em> конфиг со стандартными настройками по умолчанию, используем следующую команду:
+<div class="highlight"><pre><span></span><code>ansible-config<span class="w"> </span>init<span class="w"> </span>--disabled<span class="w"> </span>&gt;<span class="w"> </span>ansible.cfg
+</code></pre></div></p>
+</blockquote>
+<hr />
+<h2 id="inventory">Inventory<a class="headerlink" href="#inventory" title="Permanent link">&para;</a></h2>
+<p><em>Inventory</em> (инвентаризация) - это <em>файл</em> содержащий организованный <em>список хостов</em> и <em>групп хостов</em>, которыми управляет Ansible. По умолчанию Ansible использует файл <code>/etc/ansible/hosts</code>, но можно указать любой другой файл с помощью параметра <code>-i</code> или указав в файле конфигурации. Используя файл инвентаризации, Ansible может <em>управлять</em> большим количеством хостов при помощи одной команды.</p>
+<blockquote>
+<p>Inventory-файл можно создавать как в <em>формате INI</em> так и в <em>формате YAML</em>. Для небольшого количества хостов подойдет INI, но по мере увеличения, удобнее будет использовать YAML.</p>
+</blockquote>
+<p><em>Пример самого простого inventory-файла:</em></p>
+<div class="highlight"><pre><span></span><code><span class="k">[myhost]</span>
+<span class="na">192.0.2.50</span>
+<span class="na">192.0.2.51</span>
+<span class="na">192.0.2.52</span>
+</code></pre></div>
+<p><em>Пример более сложного inventory-файла:</em></p>
+<div class="highlight"><pre><span></span><code><span class="k">[nginx_hosts]</span>
+<span class="na">nginx1 ansible_host</span><span class="o">=</span><span class="s">10.0.3.10 ansible_password=test1</span>
+
+<span class="k">[apache_hosts]</span>
+<span class="na">apache1 ansible_host</span><span class="o">=</span><span class="s">10.0.3.11 ansible_password=test2</span>
+<span class="na">apache2 ansible_host</span><span class="o">=</span><span class="s">10.0.3.12 ansible_password=test3</span>
+
+<span class="k">[containers:children]</span>
+<span class="na">nginx_hosts</span>
+<span class="na">apache_hosts</span>
+</code></pre></div>
+<blockquote>
+<p>Чтобы проверить созданный inventory-файл, можно использовать следующую команду:
+<div class="highlight"><pre><span></span><code>ansible-inventory<span class="w"> </span>-i<span class="w"> </span>inventory.yml<span class="w"> </span>--list
+</code></pre></div></p>
+</blockquote>
+<p><em>Пример inventory-файла в формате YAML:</em></p>
+<div class="highlight"><pre><span></span><code>nginx_hosts:
+  hosts:
+    nginx1:
+      ansible_host: 10.0.3.10
+      ansible_user: owner
+
+apache_hosts:
+  hosts:
+    apache1:
+      ansible_host: 10.0.3.11
+    apache2:
+      ansible_host: 10.0.3.12
+  vars:    # Групповые переменные
+    ansible_user: root
+
+containers:    # Метагруппа
+  children:
+    nginx_hosts:
+    apache_hosts:
+  vars:
+    ansible_ssh_private_key_file: /root/.ssh/id_rsa
+</code></pre></div>
+<blockquote>
+<p>Переменные можно хранить в <em>отдельных</em> файлах, <em>названных</em> по имени группы, для которой они предназначены.</p>
+</blockquote>
+<p><strong>Некоторые часто используемые переменные:</strong></p>
+<ul>
+<li><code>ansible_host</code> - имя хоста.</li>
+<li><code>ansible_port</code> - порт хоста для подключения.</li>
+<li><code>ansible_user</code> - пользователь хоста.</li>
+<li><code>ansible_password</code> - пароль от хоста.</li>
+<li><code>ansible_ssh_private_key_file</code> - путь до файла приватного ssh ключа.</li>
+<li><code>ansible_become</code> - выполнять команды с повышением привилегий.</li>
+</ul>
+<hr />
+<h2 id="ansible-module">Простые команды в Ansible. Module<a class="headerlink" href="#ansible-module" title="Permanent link">&para;</a></h2>
+<p><em>Module</em> (модуль) - это <em>код</em> или <em>двоичные файлы</em>, которые Ansible копирует и <em>выполняет</em> на каждом управляемом узле (при необходимости) для выполнения <em>действий</em>, определенного в каждой задаче (task).</p>
+<p><em>Список</em> модулей можно найти по <a href="https://docs.ansible.com/ansible/latest/collections/index.html">ссылке</a> или воспользоваться <em>поиском</em> на сайте документации.</p>
+<p><em>Простые команды</em> Ansible позволяют выполнять <em>одноразовые</em> задачи на хостах без необходимости создания плейбуков.</p>
+<p><strong>Некоторые простые команды:</strong></p>
+<ul>
+<li>Пинг серверов:</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>myhosts<span class="w"> </span>-i<span class="w"> </span>inventory.yml<span class="w"> </span>-m<span class="w"> </span>ping
+</code></pre></div>
+<code>где: -i - не стандартный inventory-файл; -m - модуль</code></p>
+<ul>
+<li>Вывод информации о серверах:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>all<span class="w"> </span>-i<span class="w"> </span>inventory.yml<span class="w"> </span>-m<span class="w"> </span>setup
+</code></pre></div>
+<ul>
+<li>Запуск команды в shell:</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Позволяет использовать возможности оболочки (конвейеры, перенаправления и т.д.)</span>
+ansible<span class="w"> </span>nginx_hosts<span class="w"> </span>-m<span class="w"> </span>shell<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span>
+<span class="c1"># Без использование оболочки (только для простых команд)</span>
+ansible<span class="w"> </span>apache_hosts<span class="w"> </span>-m<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;uptime&quot;</span>
+</code></pre></div>
+<code>где: -a - аргументы</code></p>
+<ul>
+<li>Создать файл:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/root/test.txt state=touch mode=0777&quot;</span>
+</code></pre></div>
+<ul>
+<li>Удалить файл:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>file<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;path=/root/test.txt state=absent&quot;</span>
+</code></pre></div>
+<ul>
+<li>Скопировать файл с хоста:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>all<span class="w"> </span>-m<span class="w"> </span>copy<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;src=test.txt dest=/root/test.txt&quot;</span>
+</code></pre></div>
+<ul>
+<li>Перезапустить службу:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ansible<span class="w"> </span>apache_hosts<span class="w"> </span>-m<span class="w"> </span>service<span class="w"> </span>-a<span class="w"> </span><span class="s2">&quot;name=apache2 state=restarted&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="playbooks">Playbooks<a class="headerlink" href="#playbooks" title="Permanent link">&para;</a></h2>
+<p><em>Playbook</em> (сценарий) - это описание состояния ресурсов системы, в котором она <em>должна находится</em> в конкретный момент времени, включая установленные пакеты, запущенные службы, созданные файлы и многое другое. Ansible проверяет, что каждый из ресурсов системы находится в <em>ожидаемом состоянии</em> и пытается <em>исправить</em> состояние ресурса, если оно <em>не соответствует</em> ожидаемому. Для написания плейбуков используется формат YAML с описанием <em>требуемых состояний</em> управляемой системы.</p>
+<p>Playbook <em>состоит</em> из:</p>
+<ul>
+<li><em>Playbook</em> - непосредственно сам плейбук, <em>список действий</em>, определяющий порядок, в котором Ansible выполняет операции сверху вниз.</li>
+<li><em>Play</em> - упорядоченный <em>список задач</em>, сопоставленный с управляемыми узлами из inventory-файла.</li>
+<li><em>Task</em> - одна <em>задача</em>, выполняемая с помощью модуля.</li>
+<li><em>Module</em> - <em>модуль кода</em> или <em>двоичный файл</em>, который Ansible запускает на управляемых узлах.</li>
+</ul>
+<p><em>Пример playbook:</em></p>
+<div class="highlight"><pre><span></span><code>- name: Test Nginx
+  hosts: nginx_hosts
+  vars:
+    word: Hello
+
+  tasks:
+
+    - name: Ping nginx hosts
+      ping:
+
+    - name: Print message
+      debug:
+        msg: &quot;{{ word }} Nginx!&quot;
+
+    - name: Print ip info witn ansible_facts
+      debug:
+        msg: &quot;Ip-address eq {{ ansible_facts[&#39;all_ipv4_addresses&#39;][0] }}&quot;
+
+
+
+- name: Test Apache
+  hosts: apache_hosts
+  vars:
+    word: Hi
+
+  tasks:
+
+    - name: Ping apache hosts
+      ping:
+
+    - name: Print message
+      debug:
+        msg: &quot;{{ word }} Apache!&quot;
+
+    - name: Print ip info with variables
+      debug:
+        msg: &quot;Ip-address eq {{ ansible_host }}&quot;
+</code></pre></div>
+<p><em>Команда для запуска playbook:</em></p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.yml<span class="w"> </span>playbook.yml
+</code></pre></div>
+<p><em>Команда для проверки playbook без внесения изменений на хосты:</em></p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span>-i<span class="w"> </span>inventory.yml<span class="w"> </span>--check<span class="w"> </span>playbook.yml
+</code></pre></div>
+<hr />
+<h2 id="roles-ansible-galaxy">Roles &amp; Ansible Galaxy<a class="headerlink" href="#roles-ansible-galaxy" title="Permanent link">&para;</a></h2>
+<p>Сайт с ролями созданными <em>пользователями</em>: <a href="https://galaxy.ansible.com/ui/">Ansible Galaxy</a>.</p>
+<p><em>Roles</em> (роли) - это способ организации и <em>повторного использования</em> кода в Ansible. Роль содержит набор задач, переменных и файлов, <em>необходимых</em> для выполнения определенной задачи. Вместо блока tasks в плейбуке можно указать роль.</p>
+<p>Роли Ansible имеют определенную <em>структуру</em>, включающую семь основных стандартных каталогов. Любые каталоги, которые роль не использует, можно <em>опустить</em>.</p>
+<p><em>Основные каталоги roles:</em></p>
+<ul>
+<li><code>tasks</code> - каталог с задачами;</li>
+<li><code>handlers</code> - каталог с обработчиками (особый тип задач);</li>
+<li><code>templates</code> - каталог с шаблонами;</li>
+<li><code>files</code> - каталог с файлами, которые нужны роли;</li>
+<li><code>vars</code> - каталог с переменными;</li>
+<li><code>defaults</code> - каталог, в котором указываются значения по умолчанию для переменных, эти значения имеют самый низкий приоритет, поэтому их легко перебить, определив переменную в другом месте;</li>
+<li><code>meta</code> - каталог с метаданными роли (включая зависимости.</li>
+</ul>
+<blockquote>
+<p>Внутри каталогов <code>tasks</code>, <code>handlers</code>, <code>vars</code>, <code>defaults</code> и <code>meta</code>, ansible считывает все, что находится в файле <code>main.yml</code>. Другие файлы надо <em>добавлять</em> через <code>include</code>.
+Внутри роли, на файлы в каталогах <code>files</code>, <code>templates</code> и <code>tasks</code>, можно ссылаться <em>не указывая путь</em> к ним (достаточно указать имя файла).</p>
+</blockquote>
+<p><em>Создание структуры каталогов для роли:</em>
+<div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>role<span class="w"> </span>init<span class="w"> </span>nginx_role
+</code></pre></div></p>
+<p>По умолчанию, Ansible <em>ищет</em> роли в следующих местах:</p>
+<ul>
+<li>в коллекциях, если они используются;</li>
+<li>в папке <code>roles/</code>, которая расположена относительно файла плейбука;</li>
+<li>в папках по умолчанию: <code>~/.ansible/roles/</code>, <code>/usr/share/ansible/roles/</code>, <code>/etc/ansible/roles/</code>;</li>
+<li>в папке, где находится файл плейбука.</li>
+</ul>
+<h3 id="_1">Использование ролей<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong>Использование ролей на уровне play</strong></p>
+<p>Роли добавленные в раздел <code>roles</code>, выполняются <em>перед</em> любыми другими задачами в плейбуке.</p>
+<div class="highlight"><pre><span></span><code>- hosts: all
+  roles:
+    - test_role_1
+    - test_role_2
+</code></pre></div>
+<p><strong>Динамическое повторное использование ролей</strong></p>
+<p>Роли можно использовать <em>динамически</em> повторно в любом месте плейбука, при помощи <code>include_role</code>. При таком использовании, роли выполняются в том порядке, в котором они <em>определенны</em>.</p>
+<p><em>Особенности:</em></p>
+<ul>
+<li>Роль включается <em>во время выполнения</em> playbook. Это позволяет использовать <em>динамические</em> переменные или <code>loop</code> для передачи параметров в роль.</li>
+<li>Можно использовать <code>include_role</code> в задачах, чтобы включать роль <em>несколько раз</em> с разными параметрами.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>- hosts: all
+
+  tasks:
+    - name: Print a message
+      debug:
+        msg: &quot;this task runs before the role&quot;
+
+    - name: Include the test role
+      include_role:
+        name: test_role_1
+      loop:
+        - web1
+        - web2
+      vars:
+        web_server: &quot;{{ item }}&quot;
+
+    - name: Print a message
+      debug:
+        msg: &quot;this task runs after the role&quot;
+</code></pre></div>
+<p><strong>Статическое повторное использование ролей</strong></p>
+<p>Роли можно использовать <em>статически</em> повторно в любом месте плейбука, при помощи <code>import_role</code>. При таком использовании, <em>поведение</em> такое же, как при использовании ключевого слова <code>roles</code>, только задачи выполняются не в начале, а в том месте где они <em>определенны</em>.</p>
+<p><em>Особенности:</em></p>
+<ul>
+<li>Роль импортируется во время парсинга playbook, то есть <em>до его выполнения</em>. Это означает, что все задачи и переменные роли становятся <em>частью</em> playbook на этапе компиляции.</li>
+<li>Поскольку <code>import_role</code> выполняется на этапе компиляции, <em>нельзя</em> использовать динамические переменные или <code>loop</code> для передачи параметров в роль.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>- hosts: all
+
+  tasks:
+    - name: Print a message
+      debug:
+        msg: &quot;before we run our role&quot;
+
+    - name: Import the test role
+      import_role:
+        name: test_role_2
+
+    - name: Print a message
+      debug:
+        msg: &quot;after we ran our role&quot;
+</code></pre></div>
+<hr />
+<h2 id="collections">Collections<a class="headerlink" href="#collections" title="Permanent link">&para;</a></h2>
+<p><em>Collections</em> (коллекции) - это способ организации и распространения модулей, плагинов, ролей и других компонентов Ansible в удобном формате. Коллекции позволяют группировать связанные элементы, что упрощает их использование и управление ими. Они были введены в Ansible 2.8 и стали стандартом для упаковки и распространения контента Ansible.</p>
+<p><em>Создание новой коллекции:</em></p>
+<div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>init<span class="w"> </span>my_namespace.my_collection
+</code></pre></div>
+<p><em>Установка коллекции (чтобы можно было использовать ее модули и роли в плэйбуках):</em></p>
+<div class="highlight"><pre><span></span><code>ansible-galaxy<span class="w"> </span>collection<span class="w"> </span>install<span class="w"> </span>my_namespace.my_collection
+</code></pre></div>
+<hr />
+<h2 id="molecule">Molecule<a class="headerlink" href="#molecule" title="Permanent link">&para;</a></h2>
+<p><a href="https://ansible.readthedocs.io/projects/molecule/">Документация</a>.</p>
+<p><em>Molecule</em> - это инструмент, который используется для тестирования ролей Ansible. Он позволяет разработчикам создавать, тестировать и управлять окружениями для выполнения тестов, что помогает обеспечить качество и надежность кода.</p>
+<p><em>Зависимости:</em></p>
+<ul>
+<li>ansible-core &gt;= 2.12</li>
+<li>Python &gt;= 3.10</li>
+</ul>
+<p><em>Установка:</em></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu</span>
+apt<span class="w"> </span>install<span class="w"> </span>python3-pip<span class="w"> </span>libssl-dev
+pip3<span class="w"> </span>install<span class="w"> </span>ansible-dev-tools
+</code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

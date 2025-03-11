@@ -1,0 +1,1049 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../linux_directory_structure/">
+      
+      
+        <link rel="next" href="../lxc/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Сеть в Linux - База знаний LinAdm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="База знаний LinAdm" class="md-header__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            База знаний LinAdm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Сеть в Linux
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="База знаний LinAdm" class="md-nav__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    База знаний LinAdm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная страница
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Консольные утилиты и приложения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../borgbackup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroups_namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Контрольные группы и пространство имен
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_build_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сборка пакетов из исходного кода
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_diagnistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_directory_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Структура директорий в Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршрутизация в Linux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Маршрутизация в Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Типы маршрутов и таблицы маршрутизации
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание и настройка моста
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LXC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_basic_diagnostic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Базовые нагрузочные тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты кластера Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_loki_promtail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тестирование работы Loki + Promtail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linux_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршрутизация в Linux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Маршрутизация в Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Типы маршрутов и таблицы маршрутизации
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание и настройка моста
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="linux">Сеть в Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<p><em><a href="../linux/">&lt;- Назад</a></em></p>
+<p><em><a href="../">&lt;- На главную</a></em></p>
+<hr />
+<h2 id="linux_1">Маршрутизация в Linux<a class="headerlink" href="#linux_1" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Общая информация<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><em>Посмотреть таблицу маршрутизации можно с помощью следующих команд:</em>
+<div class="highlight"><pre><span></span><code><span class="c1"># Базовый вывод</span>
+ip<span class="w"> </span>route
+<span class="c1"># Вывод определенной таблицы</span>
+ip<span class="w"> </span>route<span class="w"> </span>list<span class="w"> </span>table<span class="w"> </span>main
+<span class="c1"># Другие команды</span>
+route<span class="w"> </span>/<span class="w"> </span>routel
+</code></pre></div></p>
+<p><em>Вывод <code>ip route</code>:</em>
+<div class="highlight"><pre><span></span><code>default via 192.168.1.1 dev ens18 onlink
+192.168.1.0/24 dev ens18 proto kernel scope link src 192.168.1.100
+---or---
+default via 192.168.0.1 dev wlp0s2 proto dhcp src 192.168.0.100 metric 600 
+192.168.0.0/24 dev wlp0s2 proto kernel scope link src 192.168.0.100 metric 600
+</code></pre></div>
+<em>где:</em></p>
+<ul>
+<li><code>default</code> - <em>целевой IP-адрес</em> или <em>подсеть</em> для которых создается маршрут (в данной строке означает вариант по умолчанию, т.е. <em>любой адрес</em>);</li>
+<li><code>via 192.168.1.1</code> - IP-адрес <em>шлюза</em>, через которого можно будет добраться до целевого IP-адреса;</li>
+<li><code>dev ens18</code> - сетевой <em>интерфейс</em>, через который будет осуществляться маршрут;</li>
+<li><code>onlink</code> - указание, что шлюз находится в <em>той же сети</em>, что и указанный IP-адрес;</li>
+<li><code>proto kernel</code> - <em>протокол</em>, который использовался для установки маршрута (прим. <code>kernel</code> - маршрут установлен ядром, <code>dhcp</code> - маршрут установлен сервисом DHCP, <code>static</code> - прописан вручную);</li>
+<li><code>scope link</code> - <em>область видимости</em> маршрута:<ul>
+<li><code>global</code> - маршрут доступен для всех интерфейсов и может использоваться для маршрутизации пакетов в глобальной сети;</li>
+<li><code>link</code> - маршрут доступен только для устройств в одной локальной сети (на одном канале);</li>
+<li><code>host</code> - маршрут предназначен только для одного хоста.</li>
+</ul>
+</li>
+<li><code>src 192.168.1.100</code> - <em>исходный IP-адрес</em>, через который будут идти исходящие пакеты;</li>
+<li><code>metric 600</code> - <em>приоритет</em> маршрута (чем ниже значение - тем выше приоритет);</li>
+<li><code>table 0</code> - номер или имя <em>таблицы</em>, куда будет добавлен маршрут.</li>
+</ul>
+<blockquote>
+<p>Для отправки пакетов ядро подбирает наиболее <em>конкретный</em> маршрут, т.е. тот где самая длинная маска.</p>
+</blockquote>
+<p><em>Настройка</em> маршрутов осуществляется при помощи приведенной выше команды <code>ip route</code>.</p>
+<ul>
+<li><em>Добавление</em> правила:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.10.112<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.1.1
+</code></pre></div></li>
+<li><em>Изменение</em> правила:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>change<span class="w"> </span><span class="m">192</span>.168.10.112<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.0.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>onlink
+</code></pre></div></li>
+<li><em>Удаление</em> правила:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>del<span class="w"> </span><span class="m">192</span>.168.10.112<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.0.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>onlink
+</code></pre></div></li>
+</ul>
+<blockquote>
+<p>Маршруты при использовании данной команды будут <em>удаленны</em> после перезагрузки!
+Чтобы маршруты сохранялись после перезапуска, можно прописать их в файл <code>/etc/network/interfaces</code> в блоке <em>необходимого интерфейса</em> (<code>up</code> - запуск команды во время включения интерфейса, <code>post-up</code> - запуск команды после успешного включения интерфейса, <code>pre-down</code> - запуск команды перед отключением интерфейса, <code>down</code> - запуск команды во время выключения интерфейса):
+<div class="highlight"><pre><span></span><code>post-up ip route change default via 192.168.1.1 dev ens18 src 192.168.1.111
+</code></pre></div></p>
+</blockquote>
+<h3 id="_2">Типы маршрутов и таблицы маршрутизации<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><em>Данный раздел написан по материалам следующей <a href="https://habr.com/ru/articles/138698/">статьи</a>.</em></p>
+<p><em>Типы маршрутов:</em></p>
+<ul>
+<li><code>unicast</code> - <em>обычный</em> маршрут.</li>
+<li><code>unreachable</code> - <em>запрещающий</em> маршрут (отправителю пакетов, попавших на этот маршрут, будет отослан icmp-пакет с <em>сообщением</em> о недоступности: <code>host unreachable</code>).</li>
+<li><code>blackhole</code> - пакет на этом маршруте будет <em>молча отброшен</em>.</li>
+<li><code>prohibit</code> - тоже самое, что и <code>unreachable</code>, только будет отправлено <em>другое сообщение</em>: <code>communication administartively prohibited</code>.</li>
+<li><code>local</code> - адрес назначения находится на <em>данном хосте</em> (после того, как выяснится, что пакет попадает на этот маршрут, будет производится поиск подходящего <em>сокета</em> для него).</li>
+<li><code>broadcast</code> - <em>широковещательный</em> маршрут (для входящих пакетов, попадающих на этот маршрут, практически нет отличий от маршрута <code>local</code>, за исключением проверок на игнорирование широковещательных пакетов, для исходящих же есть небольшое отличие: в заголовке канального уровня, так же выставляется широковещательный адрес назначения при использовании широковещательных сетей).</li>
+<li><code>throw</code> - специальный маршрут <em>управления</em>, используемый совместно с установленными политиками (без политик, это маршрут эквивалентен <code>unreachable</code> и будет отправлять сообщение: <code>net unreachable</code>).</li>
+<li><code>multicast</code> - специальный тип, используемый для <em>многоадресной маршрутизации</em> (<em>отсутствует</em> в обычных таблицах маршрутизации, можно увидеть если вызвать таблицу <code>all</code>).</li>
+</ul>
+<p>Таким образом, исходя из списка выше, для <em>маршрутизации</em> транзитных пакетов достаточно наличия маршрута типа <code>unicast</code>, а для того, чтобы хост мог отвечать на пакеты, нужны еще маршруты типов <code>local</code> и <code>broadcast</code>(опционально). Еще следует учесть то, что нужны также маршруты <em>direct-connected</em> сетей для того, чтобы обеспечить связность с соседними маршрутизаторами.</p>
+<p>Маршруты сгруппированы в <em>таблицы маршрутизации</em>. По-умолчанию, изначально в системе присутствуют три <em>таблицы</em>:</p>
+<ul>
+<li><code>local</code>(255) - в данной таблице находятся <em>локальный</em> и <em>широковещательные</em> маршруты. Эта таблица обслуживается автоматически и генерируется на основе адресов, назначенных интерфейсам.</li>
+<li><code>main</code>(254) - <em>основная</em> таблица маршрутизации. Автоматически в нее добавляются <em>direct-connected</em> маршруты. Является таблицей по-умолчанию, если запустить команду <code>ip route</code> без указания таблицы.</li>
+<li><code>default</code>(253) - таблица для маршрутов <em>по-умолчанию</em> (ее использование не прижилось, поэтому она чаще всего пустая).</li>
+</ul>
+<blockquote>
+<p><em>Имена таблиц</em> хранятся в файле <code>/etc/iproute2/rt_tables</code>. Максимальное количество таблиц, жестко ограниченно числом 256.</p>
+</blockquote>
+<p>Таблица, в которой надо искать маршруты, определяется <em>политиками</em> маршрутизации. Эта технология называется <em>Policy Based Routing</em> - маршрутизация на основе политик. Ее суть в том, что основываясь на каких-либо <em>критериях сетевого пакета</em> мы либо <em>выбираем таблицу</em>, в которой надо искать маршрут, либо <em>определяем действие</em>, которое надо выполнить над пакетом. Каждая политика имеет номер, он же определяет приоритет. Просмотр политик осуществляется в порядке возрастания их приоритетов. Новые политики добавляются перед существующими.</p>
+<p><strong>Пример</strong></p>
+<p><em>Задача:</em> сделать так, чтобы пакеты каждого цвета не уходили за пределы своей таблицы маршрутизации и передавались только по интерфейсам своего цвета.
+<img alt="linux_network_1.png" src="../image_for_articles/linux_network_1.png" /></p>
+<p><em>Решение:</em></p>
+<ul>
+<li>Назначаем интерфейсам адреса (при этом подключенные маршруты будут попадать в таблицу main, а локальный и широковещательные - в таблицу local):
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.0.1/24<span class="w"> </span>dev<span class="w"> </span>eth0
+ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.1.1/24<span class="w"> </span>dev<span class="w"> </span>eth1
+ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.2.1/24<span class="w"> </span>dev<span class="w"> </span>eth2
+ip<span class="w"> </span>address<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.3.1/24<span class="w"> </span>dev<span class="w"> </span>eth3
+</code></pre></div></li>
+<li>Добавляем имена таблиц маршрутизации:
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;10 RED&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/iproute2/rt_tables
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;20 GREEN&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/iproute2/rt_tables
+</code></pre></div></li>
+<li>Добавляем прямые маршруты (direct-connected) в соответствующие таблицы (нужны для того, чтобы были доступны соседние маршрутизаторы):
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.0.0/24<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>table<span class="w"> </span>RED
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>dev<span class="w"> </span>eth1<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>table<span class="w"> </span>GREEN
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.2.0/24<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>table<span class="w"> </span>GREEN
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.3.0/24<span class="w"> </span>dev<span class="w"> </span>eth3<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>table<span class="w"> </span>RED
+</code></pre></div></li>
+<li>Добавляем остальные маршруты:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.0/24<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.2.10<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>table<span class="w"> </span>GREEN
+</code></pre></div></li>
+<li>Добавляем политики:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>iif<span class="w"> </span>eth0<span class="w"> </span>pref<span class="w"> </span><span class="m">10</span><span class="w"> </span>lookup<span class="w"> </span>RED
+ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>iif<span class="w"> </span>eth3<span class="w"> </span>pref<span class="w"> </span><span class="m">10</span><span class="w"> </span>lookup<span class="w"> </span>RED
+ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>iif<span class="w"> </span>eth1<span class="w"> </span>pref<span class="w"> </span><span class="m">20</span><span class="w"> </span>lookup<span class="w"> </span>GREEN
+ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>iif<span class="w"> </span>eth2<span class="w"> </span>pref<span class="w"> </span><span class="m">20</span><span class="w"> </span>lookup<span class="w"> </span>GREEN
+</code></pre></div></li>
+</ul>
+<blockquote>
+<p>В данный момент, если пакет одного цвета не находит маршрута в своей таблице, он продолжит поиск маршрута в других таблицах. Чтобы исправить данное поведение и "запереть" пакет в пределах своего цвета, можно в каждую изолированную таблицу добавить маршрут по-умолчанию (либо <code>unicast</code>, либо <code>unreachable</code>). Иной вариант, предполагает после каждой политики поиска маршрута в пределах цвета добавить запрещающую политику.
+<div class="highlight"><pre><span></span><code><span class="c1"># Вариант с маршрутом по умолчанию</span>
+ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span>unreachable<span class="w"> </span>default<span class="w"> </span>proto<span class="w"> </span>static<span class="w"> </span>table<span class="w"> </span>RED
+<span class="c1"># Вариант с запрещающими политиками</span>
+ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>unreachable<span class="w"> </span>iif<span class="w"> </span>eth1<span class="w"> </span>pref<span class="w"> </span><span class="m">21</span>
+ip<span class="w"> </span>rule<span class="w"> </span>add<span class="w"> </span>unreachable<span class="w"> </span>iif<span class="w"> </span>eth2<span class="w"> </span>pref<span class="w"> </span><span class="m">21</span>
+</code></pre></div></p>
+</blockquote>
+<p>После всех операций, так же, желательно перенести все маршруты <code>local</code> и <code>broadcast</code> из таблицы local в таблицы соответствующих цветов, чтобы невозможно было обращаться к локальным интерфейсам маршрутизатора из "чужого" цвета.</p>
+<p>В итоге таблицы маршрутизации и политики будут выглядеть следующим образом:
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>route<span class="w"> </span>list<span class="w"> </span>table<span class="w"> </span>RED
+
+&gt;<span class="w"> </span>unreachable<span class="w"> </span>default<span class="w">  </span>proto<span class="w"> </span>static
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.0.0<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="m">192</span>.168.0.0/24<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">192</span>.168.0.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>host<span class="w">  </span>src<span class="w"> </span><span class="m">192</span>.168.0.1
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.0.255<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.3.0<span class="w"> </span>dev<span class="w"> </span>eth3<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="m">192</span>.168.3.0/24<span class="w"> </span>dev<span class="w"> </span>eth3<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth3<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>host<span class="w">  </span>src<span class="w"> </span><span class="m">192</span>.168.3.1
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.3.255<span class="w"> </span>dev<span class="w"> </span>eth3<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+
+ip<span class="w"> </span>route<span class="w"> </span>list<span class="w"> </span>table<span class="w"> </span>GREEN
+
+&gt;<span class="w"> </span><span class="m">10</span>.0.0.0/8<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.2.10<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w">  </span>proto<span class="w"> </span>static
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.1.0<span class="w"> </span>dev<span class="w"> </span>eth1<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>dev<span class="w"> </span>eth1<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>dev<span class="w"> </span>eth1<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>host<span class="w">  </span>src<span class="w"> </span><span class="m">192</span>.168.1.1
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.1.255<span class="w"> </span>dev<span class="w"> </span>eth1<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.2.0<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="m">192</span>.168.2.0/24<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+&gt;<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="m">192</span>.168.2.1<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>host<span class="w">  </span>src<span class="w"> </span><span class="m">192</span>.168.2.1
+&gt;<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.2.255<span class="w"> </span>dev<span class="w"> </span>eth2<span class="w">  </span>proto<span class="w"> </span>static<span class="w">  </span>scope<span class="w"> </span>link
+
+ip<span class="w"> </span>rule<span class="w"> </span>list
+
+&gt;<span class="w"> </span><span class="m">0</span>:<span class="w">      </span>from<span class="w"> </span>all<span class="w"> </span>lookup<span class="w"> </span><span class="nb">local</span>
+&gt;<span class="w"> </span><span class="m">10</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth0<span class="w"> </span>lookup<span class="w"> </span><span class="m">10</span>
+&gt;<span class="w"> </span><span class="m">10</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth3<span class="w"> </span>lookup<span class="w"> </span><span class="m">10</span>
+&gt;<span class="w"> </span><span class="m">20</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth1<span class="w"> </span>lookup<span class="w"> </span><span class="m">20</span>
+&gt;<span class="w"> </span><span class="m">20</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth2<span class="w"> </span>lookup<span class="w"> </span><span class="m">20</span>
+&gt;<span class="w"> </span><span class="m">21</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth1<span class="w"> </span>unreachable
+&gt;<span class="w"> </span><span class="m">21</span>:<span class="w">     </span>from<span class="w"> </span>all<span class="w"> </span>iif<span class="w"> </span>eth2<span class="w"> </span>unreachable
+&gt;<span class="w"> </span><span class="m">32766</span>:<span class="w">  </span>from<span class="w"> </span>all<span class="w"> </span>lookup<span class="w"> </span>main
+&gt;<span class="w"> </span><span class="m">32767</span>:<span class="w">  </span>from<span class="w"> </span>all<span class="w"> </span>lookup<span class="w"> </span>default
+</code></pre></div></p>
+<hr />
+<h2 id="_3">Создание и настройка моста<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><em>Если отсутствуют необходимые утилиты, необходимо установить следующий пакет:</em></p>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>bridge-utils
+</code></pre></div>
+<p><strong>Создание моста</strong></p>
+<ul>
+<li><em>Создаем</em> мост</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>addbr<span class="w"> </span>mybr
+</code></pre></div>
+<ul>
+<li><em>Назначаем</em> мосту ip-адрес</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">192</span>.168.1.1/24<span class="w"> </span>brd<span class="w"> </span><span class="m">192</span>.168.1.255<span class="w"> </span>dev<span class="w"> </span>mybr
+</code></pre></div>
+<ul>
+<li><em>Включаем</em> интерфейс моста</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>mybr<span class="w"> </span>up
+</code></pre></div>
+<ul>
+<li><em>Проверяем</em> созданное устройство</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>a
+</code></pre></div>
+<p><strong>Другие полезные команды brctl</strong></p>
+<ul>
+<li>Вывести все мосты</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>show
+</code></pre></div>
+<ul>
+<li>Показать мак-адреса подключенные к мосту</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>showmacs<span class="w"> </span>brname
+</code></pre></div>
+<ul>
+<li>Удаляем мост (сперва его необходимо выключить <code>ip link set brname down</code>)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>delbr<span class="w"> </span>brname
+</code></pre></div>
+<ul>
+<li>Добавить интерфейс к мосту</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>addif<span class="w"> </span>brname<span class="w"> </span>interface_name
+</code></pre></div>
+<ul>
+<li>Отключить интерфейс от моста</li>
+</ul>
+<div class="highlight"><pre><span></span><code>brctl<span class="w"> </span>delif<span class="w"> </span>brname<span class="w"> </span>interface_name
+</code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

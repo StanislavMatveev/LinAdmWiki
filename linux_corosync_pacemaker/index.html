@@ -1,0 +1,1032 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../linux_build_packages/">
+      
+      
+        <link rel="next" href="../linux_diagnistics/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Отказоустойчивый кластер при помощи Corosync + Pacemaker - База знаний LinAdm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#corosync-pacemaker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="База знаний LinAdm" class="md-header__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            База знаний LinAdm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Отказоустойчивый кластер при помощи Corosync + Pacemaker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="База знаний LinAdm" class="md-nav__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    База знаний LinAdm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная страница
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Консольные утилиты и приложения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../borgbackup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroups_namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Контрольные группы и пространство имен
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_build_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сборка пакетов из исходного кода
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание и настройка кластера
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_diagnistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_directory_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Структура директорий в Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LXC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_basic_diagnostic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Базовые нагрузочные тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты кластера Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_loki_promtail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тестирование работы Loki + Promtail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Общая информация
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание и настройка кластера
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="corosync-pacemaker">Отказоустойчивый кластер при помощи Corosync + Pacemaker<a class="headerlink" href="#corosync-pacemaker" title="Permanent link">&para;</a></h1>
+<p><em><a href="../linux/">&lt;- Назад</a></em></p>
+<p><em><a href="../">&lt;- На главную</a></em></p>
+<hr />
+<h2 id="_1">Общая информация<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><code>Corosync</code> - программный продукт, который позволяет создавать <em>единый кластер</em> из нескольких аппаратных или виртуальных серверов. Corosync <em>отслеживает и передает</em> состояние всех участников (нод) в кластере.</p>
+<p><em>Достоинства</em>:</p>
+<ul>
+<li>Позволяет <em>мониторить статус</em> приложений;</li>
+<li>Оповещает приложения о <em>смене активной ноды</em> в кластере;</li>
+<li><em>Отправляет</em> идентичные сообщения процессам на всех нодах;</li>
+<li><em>Предоставляет доступ</em> к общей базе данных с конфигурацией и статистикой;</li>
+<li>Отправляет <em>уведомления</em> об изменениях, произведенных в базе.</li>
+</ul>
+<p><code>Pacemaker</code> - <em>менеджер ресурсов</em> кластера. Он позволяет <em>использовать</em> службы и объекты в рамках одного кластера из двух и более нод.</p>
+<p><a href="https://clusterlabs.org/pacemaker/doc/">Документация</a></p>
+<p>Достоинства:</p>
+<ul>
+<li>Позволяет находить и устранять <em>сбои</em> на уровне нод и служб;</li>
+<li>Не зависит от <em>подсистемы хранения</em> (не нужен общий накопитель);</li>
+<li>Не зависит от <em>типов ресурсов</em> (все, что можно прописать в скрипты, можно кластеризовать);</li>
+<li>Поддерживает <em>STONITH</em> (Shoot The Other Node In The Head), то есть умершая нода изолируется и запросы к ней не поступают, пока нода не отправит сообщение о том, что она снова в рабочем состоянии;</li>
+<li>Поддерживает <em>кворумные и ресурсозависимые</em> кластеры любого размера;</li>
+<li>Поддерживает практически любую <em>избыточную конфигурацию</em>;</li>
+<li>Может автоматически <em>реплицировать конфиг</em> на все узлы кластера (не придется править все вручную);</li>
+<li>Можно задать <em>порядок запуска ресурсов</em>, а также их <em>совместимость</em> на одном узле;</li>
+<li>Поддерживает расширенные типы ресурсов;</li>
+<li>Имеет единую кластерную оболочку CRM с поддержкой скриптов.</li>
+</ul>
+<blockquote>
+<p>Идея создания <em>отказоустойчивого кластера</em> заключается в том, что с помощью Corosync строится кластер, а следить за его состоянием будет Pacemaker.</p>
+</blockquote>
+<p><strong>Структура Pacemaker</strong></p>
+<p>Первая важная сущность - это <em>узлы кластера</em>. Узел (<em>нода</em>) кластера представляет собой физический сервер или виртуальную машину с установленным Pacemaker. Узлы, предназначенные для предоставления одинаковых сервисов, должны иметь одинаковую <em>конфигурацию софта</em>.</p>
+<p>Вторая важная сущность - это <em>ресурсы кластера</em>. Для Pacemaker ресурс - это <em>скрипт</em>, написанный на любом языке (чаще всего на <code>bash</code>, но могут быть и другие языки, например <code>Python</code>). Скрипт управляет сервисами в операционной системе, он должен уметь выполнять 3 действия: <code>start</code>, <code>stop</code> и <code>monitor</code>, а так же делиться некоторой <em>метаинформацией</em>.</p>
+<p>Ресурсы имеют множество <em>атрибутов</em>. Рассмотрим <em>наиболее интересные</em> из них:</p>
+<ul>
+<li><code>priority</code> - <em>приоритет</em> ресурса, который учитывается, если узел исчерпал лимит по количеству активных ресурсов (по умолчанию 0). Если узлы кластера не одинаковы по производительности или доступности, то можно увеличить приоритет одного из узлов, чтобы он был активным всегда, когда работает.</li>
+<li><code>resource-stickiness</code> - "<em>липкость</em>" ресурса (по умолчанию 0). "Липкость" указывает на то, насколько ресурс "хочет" оставаться там, где он есть сейчас. Другими словами, "липкость" показывает, насколько желательно или не желательно, чтобы ресурс вернулся на восстановленный после сбоя узел. Может быть любым числом указывающим "вес", который должен быть выше "веса" других операций (перенос на другой узел и т.д.), чтобы ресурс оставался на данном узле. "Вес" подбирается опытным путем.</li>
+</ul>
+<blockquote>
+<p>Поскольку по умолчанию липкость всех ресурсов 0, то Pacemaker сам располагает ресурсы на узлах "<em>оптимально</em>" на свое усмотрение.</p>
+</blockquote>
+<ul>
+<li><code>migration-threshold</code> - <em>сколько отказов</em> должно произойти, чтобы Pacemaker решил, что узел непригоден для данного ресурса и перенес (<em>мигрировал</em>) его на другой узел. По умолчанию этот параметр также равен 0, т.е. при любом количестве отказов автоматического переноса ресурсов не будет происходить. Но, с точки зрения <em>отказоустойчивости</em>, правильно выставить этот параметр в 1, чтобы при первом же сбое Pacemaker перемещал ресурс на другой узел.</li>
+<li><code>failure-timeout</code> - количество <em>секунд после сбоя</em>, до истечения которых Pacemaker считает, что отказа не произошло, и не предпринимает ничего, в частности, не перемещает ресурсы. По умолчанию, равен 0.</li>
+<li><code>multiple-active</code> - дает указание Pacemaker, что делать с ресурсом, если он оказался запущен <em>более чем на одном</em> узле. Может принимать следующие значения:<ul>
+<li><code>block</code> - установить ресурсам опцию <code>unmanaged</code>, то есть деактивировать</li>
+<li><code>stop_only</code> - остановить ресурсы на всех узлах и оставить их в таком состоянии</li>
+<li><code>stop_start</code> - остановить ресурсы на всех узлах и запустить только на одном (по умолчанию)</li>
+<li><code>stop_unexpected</code> - остановить все активные ресурсы, кроме тех, где ресурс должен быть активным (начиная с версии 2.1.3)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>По умолчанию, кластер не следит после запуска, жив ли ресурс. Чтобы включить отслеживание, нужно при создании ресурса добавить операцию <code>monitor</code>, тогда кластер будет следить за состоянием ресурса. Параметр <code>interval</code> этой операции - это интервал, с которым необходимо делать проверку.</p>
+</blockquote>
+<p><strong>Типы сетей используемых в Corosync</strong></p>
+<p><code>KNET (Kernel Network)</code> - это один из <em>транспортных протоколов</em> используемых в Corosync для обеспечения связи между узлами кластера. Он основан на механизмах <em>ядра Linux</em> и предназначен для обеспечения высокой производительности и надежности в кластерных средах.</p>
+<p><code>UDPU (Unicast Datagram Protocol)</code> - это другой <em>транспортный протокол</em>, который также используется в Corosync. Он основан на использовании <em>UDP</em> для передачи сообщений и может быть более простым в настройке, особенно в средах, где не требуется высокая производительность или сложные сетевые топологии.</p>
+<blockquote>
+<p><em>Конфиг corosync</em> лежит по пути <code>/etc/corosync/corosync.conf</code>.</p>
+</blockquote>
+<hr />
+<h2 id="_2">Создание и настройка кластера<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>Кластер из трех нод. Две с nginx, 3-я нода "наблюдатель".</strong></p>
+<ul>
+<li>Прописываем <em>адреса</em> нод в <code>/etc/hosts</code> на всех нодах:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>192.168.1.10 node1
+192.168.1.11 node2
+192.168.1.12 node3
+</code></pre></div>
+<blockquote>
+<p>Некоторые файлы <code>/etc/hosts</code> <em>перезаписываются из шаблона</em> при перезагрузке, особенно на облачных решениях. Соответственно нужно <em>редактировать шаблон</em>, путь до него обычно указан в самом <code>/etc/hosts</code>.</p>
+</blockquote>
+<ul>
+<li>Устанавливаем <em>основные пакеты</em> на всех нодах (данную команду нужно исполнять с правами рута, но если использовать <code>sudo</code>, то скрипт установщика отработает неверно и не создастся пользователь <code>hacluster</code>):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>apt<span class="w"> </span>install<span class="w"> </span>pacemaker<span class="w"> </span>pcs<span class="w"> </span>corosync<span class="w"> </span>resource-agents
+</code></pre></div>
+<ul>
+<li>Включаем <em>автозагрузку</em> сервисов на всех нодах:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>pcsd<span class="w"> </span>corosync<span class="w"> </span>pacemaker
+</code></pre></div>
+<blockquote>
+<p>Для <em>управления кластером</em> используется утилита <code>pcs</code>. При установке Pacemaker <em>автоматически</em> будет создан пользователь <code>hacluster</code>. Для использования <code>pcs</code>, а также для доступа в веб-интерфейс нужно задать пароль пользователю <code>hacluster</code></p>
+</blockquote>
+<ul>
+<li>Меняем <em>пароль</em> пользователю <code>hacluster</code> на всех нодах:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>passwd<span class="w"> </span>hacluster
+</code></pre></div>
+<ul>
+<li>Запускаем <em>сервис</em> на всех нодах:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>start<span class="w"> </span>pcsd
+</code></pre></div>
+<blockquote>
+<p>Далее все действия выполняются уже на <em>одной ноде</em>.</p>
+</blockquote>
+<ul>
+<li>Настраиваем <em>аутентификацию</em>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>host<span class="w"> </span>auth<span class="w"> </span>node1<span class="w"> </span>node2<span class="w"> </span>node3<span class="w"> </span>-u<span class="w"> </span>hacluster<span class="w"> </span>-p<span class="w"> </span>password
+</code></pre></div>
+<ul>
+<li>Создаем <em>кластер</em> (сразу добавляем в автозагрузку и включаем):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>cluster<span class="w"> </span>setup<span class="w"> </span>--force<span class="w"> </span>--enable<span class="w"> </span>--start<span class="w"> </span>my_cluster<span class="w"> </span>node1<span class="w"> </span>node2<span class="w"> </span>node3
+</code></pre></div>
+<ul>
+<li>Проверяем <em>статус</em> кластера:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>status
+pcs<span class="w"> </span>status<span class="w"> </span>corosync
+</code></pre></div>
+<ul>
+<li>Выключаем <em>STONITH</em>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>property<span class="w"> </span><span class="nb">set</span><span class="w"> </span>stonith-enabled<span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
+<ul>
+<li>Если используется всего 2 ноды, то при сбое на одном из узлов <em>кворума</em> не будет и Pacemaker остановит ресурсы, чтобы этого не произошло отключаем эту политику (только для 2-х нод!!!):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>property<span class="w"> </span><span class="nb">set</span><span class="w"> </span>no-quorum-policy<span class="o">=</span>ignore
+</code></pre></div>
+<ul>
+<li>Настройки можно проверить командой:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>property
+</code></pre></div>
+<ul>
+<li>Создаем ресурс, а именно виртуальный IP-адрес:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs resource create my_vip ocf:heartbeat:IPaddr2 ip=192.168.1.100 cidr_netmask=24 op monitor interval=30s
+</code></pre></div>
+<ul>
+<li>Проверяем:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>resource
+ip<span class="w"> </span>a
+</code></pre></div>
+<ul>
+<li>Добавляем ресурс nginx (<em>для примера</em>):</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Убираем службу из автозапуска (необходимо выполнить на всех нодах)</span>
+systemctl<span class="w"> </span>disable<span class="w"> </span>--now<span class="w"> </span>nginx
+<span class="c1"># Добавляем ресурс, который будет проверяться каждые 30с</span>
+<span class="c1"># и в случае минутного тайм-аута ресурс будет включен на другой ноде</span>
+pcs<span class="w"> </span>resource<span class="w"> </span>create<span class="w"> </span>my_nginx<span class="w"> </span>ocf:heartbeat:nginx<span class="w"> </span>op<span class="w"> </span>monitor<span class="w"> </span><span class="nv">interval</span><span class="o">=</span>30s<span class="w"> </span><span class="nv">timeout</span><span class="o">=</span>60s
+</code></pre></div>
+<ul>
+<li>Создаем группу ресурсов, в которую сложим все созданные ресурсы (чтобы при сбое одного из ресурсов, вся группа переместилась на другой узел):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>resource<span class="w"> </span>group<span class="w"> </span>add<span class="w"> </span>my_group<span class="w"> </span>my_vip<span class="w"> </span>my_nginx
+</code></pre></div>
+<ul>
+<li>Создаем ограничение локации для необходимых узлов:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 2 основные ноды делаем равнозначными</span>
+pcs<span class="w"> </span>constraint<span class="w"> </span>location<span class="w"> </span>my_group<span class="w"> </span>prefers<span class="w"> </span>node1<span class="w"> </span>node2
+<span class="c1"># Ноду наюлюдатель изолируем от миграции ресурсов</span>
+pcs<span class="w"> </span>constraint<span class="w"> </span>location<span class="w"> </span>my_group<span class="w"> </span>avoids<span class="w"> </span>node3
+</code></pre></div>
+<ul>
+<li><em>Перезагружаем</em> службу corosync на всех нодах (pacemaker перезагрузится автоматически):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>service<span class="w"> </span>corosync<span class="w"> </span>restart
+</code></pre></div>
+<p><strong>Дополнительные команды</strong></p>
+<ul>
+<li>Вывести больше <em>информации</em> о кластере:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>config<span class="w"> </span>show
+</code></pre></div>
+<ul>
+<li>Присвоение <em>мета информации</em> ресурсу:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>resource<span class="w"> </span>meta<span class="w"> </span>my_group<span class="w"> </span>resource-stickiness<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<ul>
+<li>Проверка <em>конфигурации</em> кластера:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>cluster<span class="w"> </span>verify<span class="w"> </span>--full
+</code></pre></div>
+<ul>
+<li>Если требуется сменить рабочую ноду руками (например для <em>технических работ</em>), то переносим ресурсы следующей командой:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>resource<span class="w"> </span>move<span class="w"> </span>my_group<span class="w"> </span>node2
+</code></pre></div>
+<blockquote>
+<p>При переносе, создается <em>ограничение</em> по локации в <code>constraint</code>.</p>
+</blockquote>
+<ul>
+<li>Вывод списка существующих <em>ограничений</em>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>constraint<span class="w"> </span>config
+</code></pre></div>
+<ul>
+<li>Удаление <em>ограничения локации</em>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>constraint<span class="w"> </span>location<span class="w"> </span>delete<span class="w"> </span>&lt;constraint_id&gt;
+</code></pre></div>
+<ul>
+<li>Добавление <em>новой ноды</em> в кластер:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>host<span class="w"> </span>auth<span class="w"> </span>node3<span class="w"> </span>-u<span class="w"> </span>hacluster<span class="w"> </span>-p<span class="w"> </span>password
+pcs<span class="w"> </span>cluster<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>--force<span class="w"> </span>node3
+service<span class="w"> </span>corosync<span class="w"> </span>restart
+</code></pre></div>
+<ul>
+<li>Очистка <em>счетчиков сбоев</em> (следует выполнять, когда мы устранили причину сбоя и хотим вернуть узел в состав кластера):</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>resource<span class="w"> </span>cleanup
+</code></pre></div>
+<ul>
+<li>Посмотреть <em>доступные ресурсы</em>, можно командами:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Вывести доступные стандарты</span>
+pcs<span class="w"> </span>resource<span class="w"> </span>standards
+<span class="c1"># Вывести список ресурсов определенных стандартов</span>
+pcs<span class="w"> </span>resource<span class="w"> </span>agents<span class="w"> </span>ocf:heartbeat
+pcs<span class="w"> </span>resource<span class="w"> </span>agents<span class="w"> </span>systemd
+<span class="c1"># Вывести все ресурсы доступные в системе</span>
+pcs<span class="w"> </span>resource<span class="w"> </span>list
+</code></pre></div>
+<ul>
+<li>Посмотреть <em>описание</em> определенного ресурса:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs resource describe ocf:heartbeat:IPaddr2
+</code></pre></div>
+<ul>
+<li>Отображение текущего "<em>веса</em>" размещения:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>crm_simulate<span class="w"> </span>-sL
+</code></pre></div>
+<ul>
+<li><em>Включение/отключение</em> ноды для тестов:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>pcs<span class="w"> </span>node<span class="w"> </span>standby<span class="w"> </span>node1
+pcs<span class="w"> </span>node<span class="w"> </span>unstandby<span class="w"> </span>node1
+</code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>

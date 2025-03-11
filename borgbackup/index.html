@@ -1,0 +1,1023 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../apps/">
+      
+      
+        <link rel="next" href="../cgroups_namespaces/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Borg - База знаний LinAdm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#borg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="База знаний LinAdm" class="md-header__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            База знаний LinAdm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Borg
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-green" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="База знаний LinAdm" class="md-nav__button md-logo" aria-label="База знаний LinAdm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    База знаний LinAdm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная страница
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ansible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ansible
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Консольные утилиты и приложения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Borg
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#borg_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основы Borg
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Базовая настройка сервера и клиента
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Скрипт для автоматического бэкапа
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cgroups_namespaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Контрольные группы и пространство имен
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_build_packages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сборка пакетов из исходного кода
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Отказоустойчивый кластер при помощи Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_diagnistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Диагностика железа на Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_directory_structure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Структура директорий в Linux системах
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux_network/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Сеть в Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lxc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LXC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_basic_diagnostic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Базовые нагрузочные тесты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_corosync_pacemaker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тесты кластера Corosync + Pacemaker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests_loki_promtail/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Тестирование работы Loki + Promtail
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#borg_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основы Borg
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Базовая настройка сервера и клиента
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Скрипт для автоматического бэкапа
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="borg">Borg<a class="headerlink" href="#borg" title="Permanent link">&para;</a></h1>
+<p><em><a href="../apps/">&lt;- Назад</a></em></p>
+<p><em><a href="../">&lt;- На главную</a></em></p>
+<hr />
+<h2 id="borg_1">Основы Borg<a class="headerlink" href="#borg_1" title="Permanent link">&para;</a></h2>
+<p><code>Borg</code> - система резервного копирования написанная на Python (требовательный к производительности код: сжатие, шифрование и т.д., реализован на C), работающая через SSH.</p>
+<p><a href="https://borgbackup.readthedocs.io/en/stable/index.html">Документация</a></p>
+<p><em>Установка:</em></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Debian &amp; Ubuntu</span>
+apt<span class="w"> </span>install<span class="w"> </span>borgbackup
+
+<span class="c1"># Fedora</span>
+dnf<span class="w"> </span>install<span class="w"> </span>borgbackup
+
+<span class="c1"># Arch</span>
+pacman<span class="w"> </span>-S<span class="w"> </span>borg
+</code></pre></div>
+<p><em>Основные команды:</em></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Вывести справочную информацию</span>
+borg<span class="w"> </span><span class="nb">help</span>
+<span class="c1"># Вывести справочную информацию по команде create</span>
+borg<span class="w"> </span><span class="nb">help</span><span class="w"> </span>create
+
+<span class="c1"># Инициализация нового репозитория TestRepo</span>
+<span class="c1"># флаг -e для шифрования репозитория паролем</span>
+borg<span class="w"> </span>init<span class="w"> </span>-e<span class="w"> </span>none<span class="w"> </span>borg@192.168.0.10:TestRepo
+
+<span class="c1"># Создание бэкапа TestBackUp в репозитории TestRepo с содержимым папки /home</span>
+borg<span class="w"> </span>create<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp<span class="w"> </span>/home
+
+<span class="c1"># Вывести информацию о репозитории TestRepo</span>
+borg<span class="w"> </span>info<span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># Вывести информацию о бэкапе TestBackUp из репозитория TestRepo</span>
+borg<span class="w"> </span>info<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp
+
+<span class="c1"># Вывести список бэкапов из репозитория TestRepo</span>
+borg<span class="w"> </span>list<span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># Вывести список файлов из бэкапа TestBackUp репозитория TestRepo</span>
+borg<span class="w"> </span>list<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp
+
+<span class="c1"># Проверка репозитория TestRepo на целостность</span>
+<span class="c1"># флаг -v для вывода информации в терминал</span>
+borg<span class="w"> </span>check<span class="w"> </span>-v<span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># Проверка на целостность бэкапа TestBackUp из репозитория TestRepo</span>
+borg<span class="w"> </span>check<span class="w"> </span>-v<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp
+
+<span class="c1"># Удалить все бэкапы кроме последних двух из репозитория TestRepo</span>
+<span class="c1"># флаг --list для вывода информации</span>
+<span class="c1"># флаг --keep-last для указания сколько последних копий оставить</span>
+<span class="c1"># флаг --dry-run служит для вывода информации об удаляемых бэкапах</span>
+<span class="c1"># без их удаления (чтобы удалить полноценно, запустить без флага)</span>
+borg<span class="w"> </span>prune<span class="w"> </span>--list<span class="w"> </span>--keep-last<span class="w"> </span><span class="m">2</span><span class="w"> </span>--dry-run<span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># Удалить все бэкапы кроме тех, что были сделаны за последние 2 часа</span>
+<span class="c1"># флаг --keep-within для указания различных интервалов: часы, дни и т.д.</span>
+borg<span class="w"> </span>prune<span class="w"> </span>--list<span class="w"> </span>--keep-within<span class="w"> </span>2H<span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># Удалить все бэкапы кроме последнего бэкапа в каждом из 7 дней</span>
+<span class="c1"># (дни без бэкапов не учитываются)</span>
+<span class="c1"># флаг --keep-daily для указания количества дневных бэкапов</span>
+<span class="c1"># существуют также флаги для недельных, месячных и т.д.</span>
+borg<span class="w"> </span>prune<span class="w"> </span>--list<span class="w"> </span>--keep-daily<span class="w"> </span><span class="m">7</span><span class="w"> </span>borg@192.168.0.10:TestRepo
+<span class="c1"># После удаления ненужных бэкапов, нужно обязательно применинить</span>
+<span class="c1"># compact, иначе дисковое пространство не освободится</span>
+borg<span class="w"> </span>compact<span class="w"> </span>-v<span class="w"> </span>borg@192.168.0.10:TestRepo
+
+<span class="c1"># Показать разницу между бэкапом TestBackUp и TestBackUp2</span>
+borg<span class="w"> </span>diff<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp<span class="w"> </span>TestBackUp2
+
+<span class="c1"># Примонтировать репозиторий TestRepo к папке /mnt/borg</span>
+borg<span class="w"> </span>mount<span class="w"> </span>borg@192.168.0.10:TestRepo<span class="w"> </span>/mnt/borg
+<span class="c1"># Примонтировать бэкап TestBackUp к папке /mnt/borg</span>
+borg<span class="w"> </span>mount<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp<span class="w"> </span>/mnt/borg
+<span class="c1"># Размонтировать директорию или бэкап из папки /mnt/borg</span>
+borg<span class="w"> </span>umount<span class="w"> </span>/mnt/borg
+
+<span class="c1"># Извлечь файл backup.sql из бэкапа TestBackUp</span>
+borg<span class="w"> </span>extract<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp<span class="w"> </span>backup.sql
+
+<span class="c1"># Переименовать бэкап TestBackUp в BackUp</span>
+borg<span class="w"> </span>rename<span class="w"> </span>borg@192.168.0.10:TestRepo::TestBackUp<span class="w"> </span>BackUp
+
+<span class="c1"># Удаление бэкапа BackUp</span>
+borg<span class="w"> </span>delete<span class="w"> </span>borg@192.168.0.10:TestRepo::BackUp
+</code></pre></div>
+<blockquote>
+<p>В скриптах можно использовать переменные для <em>borg</em>, в которых можно указать репозиторий или ключ от репозитория (если было включено шифрование). Полный список можно посмотреть на <a href="https://borgbackup.readthedocs.io/en/stable/usage/general.html#environment-variables">странице</a> документации.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">BORG_REPO</span><span class="o">=</span><span class="s1">&#39;ssh://borg@192.168.1.10/./TestRepo&#39;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BORG_PASSPHRASE</span><span class="o">=</span><span class="s1">&#39;test&#39;</span>
+
+borg<span class="w"> </span>create<span class="w"> </span>::TestBackUp2<span class="w"> </span>/home
+borg<span class="w"> </span>list
+borg<span class="w"> </span>list<span class="w"> </span>::TestBackUp2
+</code></pre></div>
+</blockquote>
+<hr />
+<h2 id="_1">Базовая настройка сервера и клиента<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><em>Описание:</em></p>
+<ul>
+<li>
+<p>Устанавливаем <em>borg</em> на сервере и клиенте (через репозиторий дистрибутива или со <a href="https://github.com/borgbackup/borg">страницы</a> официального репозитория на GitHub).</p>
+</li>
+<li>
+<p>На сервере создаем пользователя для <em>borg</em> (необходимо создать пользователя с домашней директорией).</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>useradd<span class="w"> </span>-m<span class="w"> </span>borg
+</code></pre></div>
+<ul>
+<li>
+<p>На клиенте генерируем SSH-ключ.</p>
+</li>
+<li>
+<p>На сервере, созданному пользователю, добавляем сгенерированный ключ.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>~borg/.ssh
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;command=&quot;/usr/bin/borg serve&quot; ssh-rsa ...&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>~borg/.ssh/authorized_keys
+chown<span class="w"> </span>-R<span class="w"> </span>borg:borg<span class="w"> </span>~borg/.ssh
+</code></pre></div>
+<ul>
+<li>Инициализируем <em>borg</em> репозиторий на бэкап-сервере с клиента.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>borg<span class="w"> </span>init<span class="w"> </span>-e<span class="w"> </span>none<span class="w"> </span>borg@192.168.0.10:TestRepo
+</code></pre></div>
+<ul>
+<li>Запускаем первый бэкап для проверки.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>borg<span class="w"> </span>create<span class="w"> </span>--stats<span class="w"> </span>--list<span class="w"> </span>--progress<span class="w"> </span>borg@192.168.0.10:TestRepo::<span class="s1">&#39;Backup_{hostname}_{now:%Y%m%d_%H%M%S}&#39;</span><span class="w"> </span>/etc
+<span class="c1"># Флаги --stats и --list выводят статистику по бэкапу и попавшим в него файлам</span>
+<span class="c1"># --progress отображает прогресс выполнения</span>
+</code></pre></div>
+<blockquote>
+<p>Borg может принимать файлы из стандартного ввода, так же можно заменить <code>borg@192.168.0.10</code> на алиас, используя <code>.ssh/config</code>.
+Пример с дампом базы данных mariadb:
+<div class="highlight"><pre><span></span><code>mariadb-dump<span class="w"> </span>--all-databases<span class="w"> </span><span class="p">|</span><span class="w"> </span>borg<span class="w"> </span>create<span class="w"> </span>--compression<span class="w"> </span>zlib<span class="w"> </span>--stdin-name<span class="w"> </span>backup.sql<span class="w"> </span>backup_server:TestRepo::<span class="s1">&#39;Backup_{hostname}_{now:%Y%m%d_%H%M%S}&#39;</span><span class="w"> </span>-
+</code></pre></div></p>
+</blockquote>
+<ul>
+<li>Проверяем список архивов внутри репозитория.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>borg<span class="w"> </span>list<span class="w"> </span>borg@192.168.0.10:TestRepo
+</code></pre></div>
+<hr />
+<h2 id="_2">Скрипт для автоматического бэкапа<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Данный скрипт взят со <a href="https://borgbackup.readthedocs.io/en/stable/quickstart.html#automating-backups">страницы</a> официальной документации.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+
+<span class="c1"># Устанавливаем репозиторий, чтобы не прописывать его в командах</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BORG_REPO</span><span class="o">=</span><span class="s1">&#39;ssh://borg@192.168.1.10/./TestRepo&#39;</span>
+
+<span class="c1"># Указываем пароль, если репозиторий инициализировался с шифрованием</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">BORG_PASSPHRASE</span><span class="o">=</span><span class="s1">&#39;test&#39;</span>
+
+<span class="c1"># Помошники и обработка ошибок</span>
+info<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;\n%s %s\n\n&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="w"> </span>date<span class="w"> </span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span><span class="p">;</span><span class="w"> </span><span class="o">}</span>
+<span class="nb">trap</span><span class="w"> </span><span class="s1">&#39;echo $( date ) Backup interrupted &gt;&amp;2; exit 2&#39;</span><span class="w"> </span>INT<span class="w"> </span>TERM
+
+info<span class="w"> </span><span class="s2">&quot;Starting backup&quot;</span>
+
+<span class="c1"># Создаем бэкап (подробно про ключи можно прочитать - borg help create)</span>
+
+borg<span class="w"> </span>create<span class="w">                         </span><span class="se">\</span>
+<span class="w">    </span>--verbose<span class="w">                       </span><span class="se">\</span>
+<span class="w">    </span>--filter<span class="w"> </span>AME<span class="w">                    </span><span class="se">\</span>
+<span class="w">    </span>--list<span class="w">                          </span><span class="se">\</span>
+<span class="w">    </span>--stats<span class="w">                         </span><span class="se">\</span>
+<span class="w">    </span>--show-rc<span class="w">                       </span><span class="se">\</span>
+<span class="w">    </span>--compression<span class="w"> </span>zlib<span class="w">              </span><span class="se">\</span>
+<span class="w">    </span>--exclude-caches<span class="w">                </span><span class="se">\</span>
+<span class="w">    </span>--exclude<span class="w"> </span><span class="s1">&#39;home/*/.cache/*&#39;</span><span class="w">     </span><span class="se">\</span>
+<span class="w">                                    </span><span class="se">\</span>
+<span class="w">    </span>::<span class="s1">&#39;{hostname}-{now}&#39;</span><span class="w">            </span><span class="se">\</span>
+<span class="w">    </span>/home
+
+<span class="nv">backup_exit</span><span class="o">=</span><span class="nv">$?</span>
+
+info<span class="w"> </span><span class="s2">&quot;Pruning repository&quot;</span>
+
+<span class="c1"># Используем prune с флагами, чтобы сохранить 7 дневных, 4 недельных</span>
+<span class="c1"># и 6 месячных бэкапов для этой машины. Флаг --glob-archive с указанием</span>
+<span class="c1"># &#39;{hostname}-*&#39;, очень важен для очистки бэкапов именно этой машины,</span>
+<span class="c1"># иначе будут удалены бэкапы с других серверов в этом репозитории.</span>
+
+borg<span class="w"> </span>prune<span class="w">                          </span><span class="se">\</span>
+<span class="w">    </span>--list<span class="w">                          </span><span class="se">\</span>
+<span class="w">    </span>--glob-archives<span class="w"> </span><span class="s1">&#39;{hostname}-*&#39;</span><span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>--show-rc<span class="w">                       </span><span class="se">\</span>
+<span class="w">    </span>--keep-daily<span class="w">    </span><span class="m">7</span><span class="w">               </span><span class="se">\</span>
+<span class="w">    </span>--keep-weekly<span class="w">   </span><span class="m">4</span><span class="w">               </span><span class="se">\</span>
+<span class="w">    </span>--keep-monthly<span class="w">  </span><span class="m">6</span>
+
+<span class="nv">prune_exit</span><span class="o">=</span><span class="nv">$?</span>
+
+<span class="c1"># Актуализируем свободное пространство диска, путем уплотнения сегментов</span>
+
+info<span class="w"> </span><span class="s2">&quot;Compacting repository&quot;</span>
+
+borg<span class="w"> </span>compact
+
+<span class="nv">compact_exit</span><span class="o">=</span><span class="nv">$?</span>
+
+<span class="c1"># Используем самый большой код выхода, как глобальный код выхода</span>
+<span class="c1"># (проверка на успешное выполнение операций)</span>
+<span class="nv">global_exit</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">backup_exit</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">prune_exit</span><span class="w"> </span>?<span class="w"> </span><span class="nv">backup_exit</span><span class="w"> </span>:<span class="w"> </span><span class="nv">prune_exit</span><span class="w"> </span><span class="k">))</span>
+<span class="nv">global_exit</span><span class="o">=</span><span class="k">$((</span><span class="w"> </span><span class="nv">compact_exit</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nv">global_exit</span><span class="w"> </span>?<span class="w"> </span><span class="nv">compact_exit</span><span class="w"> </span>:<span class="w"> </span><span class="nv">global_exit</span><span class="w"> </span><span class="k">))</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="si">${</span><span class="nv">global_exit</span><span class="si">}</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>info<span class="w"> </span><span class="s2">&quot;Backup, Prune, and Compact finished successfully&quot;</span>
+<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="si">${</span><span class="nv">global_exit</span><span class="si">}</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>info<span class="w"> </span><span class="s2">&quot;Backup, Prune, and/or Compact finished with warnings&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>info<span class="w"> </span><span class="s2">&quot;Backup, Prune, and/or Compact finished with errors&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">exit</span><span class="w"> </span><span class="si">${</span><span class="nv">global_exit</span><span class="si">}</span>
+</code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
