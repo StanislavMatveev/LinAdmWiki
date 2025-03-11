@@ -5,6 +5,7 @@
 ## Материалы
 
 > - [[ansible|Ansible]]
+> - [[borgbackup|BorgBackup]]
 > - [[lxc|LXC]]
 > - [[nginx|Nginx]]
 > - [[ssh|SSH]]
